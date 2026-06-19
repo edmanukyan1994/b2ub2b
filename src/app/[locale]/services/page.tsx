@@ -17,6 +17,7 @@ export default async function ServicesPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
   const t = await getTranslations("services");
+  const tNav = await getTranslations("nav");
   const loc = locale as Locale;
 
   return (
@@ -24,7 +25,7 @@ export default async function ServicesPage({ params }: Props) {
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimatedSection>
-            <SectionHeader title={t("title")} label="Services" description={t("subtitle")} />
+            <SectionHeader title={t("title")} label={tNav("services")} description={t("subtitle")} />
           </AnimatedSection>
           <div className="grid gap-4 md:grid-cols-2">
             {services.map((service, i) => (

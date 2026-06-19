@@ -4,10 +4,9 @@ import { Link } from "@/i18n/navigation";
 import { Badge } from "@/components/ui/Button";
 import { ArrowUpRight } from "lucide-react";
 
-const countries = ["Armenia", "Georgia", "Germany", "Netherlands", "France", "Italy", "UAE"];
-
 export function GeographySection() {
   const t = useTranslations("home");
+  const countries = t.raw("countryList") as string[];
 
   return (
     <section className="section-liquid relative border-t border-white/20 py-24 md:py-32">

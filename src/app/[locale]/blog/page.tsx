@@ -16,6 +16,7 @@ export default async function BlogPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
   const t = await getTranslations("blog");
+  const tNav = await getTranslations("nav");
   const loc = locale as Locale;
 
   return (
@@ -23,7 +24,7 @@ export default async function BlogPage({ params }: Props) {
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimatedSection>
-            <SectionHeader title={t("title")} label="Blog" description={t("subtitle")} />
+            <SectionHeader title={t("title")} label={tNav("blog")} description={t("subtitle")} />
           </AnimatedSection>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

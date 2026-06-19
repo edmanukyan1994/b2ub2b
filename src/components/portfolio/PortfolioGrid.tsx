@@ -22,6 +22,7 @@ const filters: { key: PortfolioCategory | "all"; labelKey: string }[] = [
 
 export function PortfolioGrid({ locale }: { locale: Locale }) {
   const t = useTranslations("portfolio");
+  const tNav = useTranslations("nav");
   const [active, setActive] = useState<PortfolioCategory | "all">("all");
 
   const filtered =
@@ -35,7 +36,7 @@ export function PortfolioGrid({ locale }: { locale: Locale }) {
   return (
     <>
       <AnimatedSection>
-        <SectionHeader title={t("title")} label="Portfolio" description={t("subtitle")} />
+        <SectionHeader title={t("title")} label={tNav("portfolio")} description={t("subtitle")} />
       </AnimatedSection>
 
       <AnimatedSection delay={0.1}>

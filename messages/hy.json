@@ -1,13 +1,13 @@
 {
   "meta": {
     "title": "B2UB2B — Գաղափարից մինչև հաջողություն",
-    "description": "Միջազգային կոնսալտингային, ինժեներական և թվային խումբ։ Բիզնեսի համակարգային լուծումներ Հայաստանում, Վրաստանում, Եвропայում և ԱՊՀ-ում։"
+    "description": "Միջազգային խորհրդատվական, ինժեներիական և թվային խումբ։ Բիզնեսի համակարգային լուծումներ Հայաստանում, Վրաստանում, Եվրոպայում և ԱՊՀ-ում։"
   },
   "nav": {
     "home": "Գլխավոր",
     "about": "Մեր մասին",
     "services": "Ծառայություններ",
-    "portfolio": "Պորտֆոլիо",
+    "portfolio": "Պորտֆելիո",
     "map": "Նախագծերի քարտեզ",
     "blog": "Բլոգ",
     "contact": "Կապ",
@@ -15,157 +15,187 @@
   },
   "hero": {
     "tagline": "From Idea to Success",
-    "subtitle": "Միջազգային կոնսալտингային, ինժեներական և թվային խումբ",
-    "description": "Ստեղծում ենք transformativ biznes lutsumner՝ launch-ից և injeneria-ից մինչև tsifrovatsia, marketing և mashtabavorum Հայաստանում, Vrastanum, Evropayum և APH-um.",
+    "subtitle": "Միջազգային խորհրդատվական, ինժեներիական և թվային խումբ",
+    "description": "Ստեղծում ենք փոխակերպող բիզնես լուծումներ՝ մեկնարկից և ինժեներիայից մինչև թվայինացում, մարկետինգ և մասշտաբավորում Հայաստանում, Վրաստանում, Եվրոպայում և ԱՊՀ-ում։",
     "ctaPrimary": "Քննարկել նախագիծը",
-    "ctaSecondary": "Դիտել portfolio-ն",
-    "ctaQuote": "Հարցնել գնահատական"
+    "ctaSecondary": "Դիտել պորտֆելիոն",
+    "ctaQuote": "Հարցնել գնահատական",
+    "badges": {
+      "enterprise": "Enterprise մակարդակ",
+      "regions": "Հայաստան · Վրաստան · ԵՄ",
+      "partner": "Ամբողջական ցիկլի գործընկեր"
+    },
+    "miniStats": {
+      "years": "Տարի",
+      "projects": "Նախագծեր",
+      "countries": "Երկրներ",
+      "services": "Ուղղություններ"
+    }
   },
   "home": {
     "aboutLabel": "Մեր մասին",
-    "aboutTitle": "Building Business Together",
-    "aboutText": "B2UB2B-ը ambochan kikl partner e kompanianeri hamar, oronk uzum en launch, zargatsum ev mashtabavorum. Biznes-konsalting, injeneria, HoReCa ev digital — mi chkran tak.",
+    "aboutTitle": "Կառուցում ենք բիզնեսը միասին",
+    "aboutText": "B2UB2B-ը ամբողջական ցիկլի գործընկեր է այն ընկերությունների համար, որոնք ցանկանում են մեկնարկել, զարգացնել և մասշտաբավորել բիզնեսը միջազգային մակարդակով։ Բիզնես-խորհրդատվություն, ինժեներիա, HoReCa և digital՝ մեկ տանիքի տակ։",
+    "aboutItems": {
+      "consulting": "Բիզնես-խորհրդատվություն և մեկնարկ",
+      "engineering": "Ինժեներia և HoReCa լուծումներ",
+      "digital": "Թվային արտադրանք և ավտոմատացում",
+      "marketing": "Մարկետինգ, բրենդինգ և մասշտաբավորում"
+    },
     "servicesLabel": "Ծառայություններ",
-    "servicesTitle": "Ambochan lutsumner",
-    "pillarsLabel": "Ognakarner",
-    "pillarsTitle": "Erku stolp zargatsman",
-    "portfolioLabel": "Ashtarakner",
-    "portfolioTitle": "Entracvats nakhagitsner",
-    "clientsLabel": "Hvoginer",
-    "clientsTitle": "Industriayi lidernern en havatum",
-    "casesLabel": "Keysner",
-    "casesTitle": "Karevor ardyunqner",
-    "geoLabel": "Geografia",
-    "geoTitle": "Global het, lokal ekspertiza",
-    "geoText": "Ashtarakum enq Hayastanum, Vrastanum, Germanium, Niderlandnerum, Fransium, Italium, AMU-um ev ayl ev erkirnerum.",
-    "testimonialsLabel": "Kartezner",
-    "testimonialsTitle": "Inch en asum hvoginer@",
-    "partnersLabel": "Gortsakner",
-    "partnersTitle": "Tekhnologia ev industriayi gortsakner",
-    "partnersText": "Integracnum enq lratun platformner injeneria, avtomatizacia, cloud, CRM ev marketingi hamar.",
-    "ctaTitle": "Patrast eq mi ban mecatel?",
-    "ctaText": "Patsaheq dzer nakhagits@ — patasxanum enq 24 jamum.",
-    "viewAll": "Ditel bolor@",
-    "readMore": "Aveli manramand",
+    "servicesTitle": "Ամբողջական լուծումներ",
+    "pillarsLabel": "Ուղղություններ",
+    "pillarsTitle": "Զարգացման երեք սյուներ",
+    "portfolioLabel": "Աշխատանքներ",
+    "portfolioTitle": "Ընտրված նախագծեր",
+    "clientsLabel": "Հաճախորդներ",
+    "clientsTitle": "Մեզ վստահում են ոլորտի առաջատարները",
+    "casesLabel": "Կեյսեր",
+    "casesTitle": "Կարևոր արդյունքներ",
+    "geoLabel": "Գեոգրաфիա",
+    "geoTitle": "Գլոբալ ընդգրկում, տեղական փորձառություն",
+    "geoText": "Գործունեություն ենք իրականացնում Հայաստանում, Վրաստանում, Գերմանիայում, Հոլանդիայում, Ֆրանսիայում, Իտալիայում, ԱՄԷ-ում և այլ երկրներում՝ խորը տեղական գիտելիքներով և միջազգային ստանդարտներով։",
+    "countryList": [
+      "Հայաստան",
+      "Վրաստան",
+      "Գերմանիա",
+      "Հոլանդիա",
+      "Ֆրանսիա",
+      "Իտալիա",
+      "ԱՄԷ"
+    ],
+    "testimonialsLabel": "Կարծիքներ",
+    "testimonialsTitle": "Ինչ են ասում հաճախորդները",
+    "partnersLabel": "Գործընկերներ",
+    "partnersTitle": "Տեխնոլոգիա և ոլորտային գործընկերներ",
+    "partnersText": "Ինտեգրում ենք լավագույն պլատфорմներ՝ ինժեներիա, ավտոմատացում, cloud, CRM և մարկետինգի համար։",
+    "ctaTitle": "Պատրաստ եք մեծ բան ստեղծել?",
+    "ctaText": "Պատմեք ձեր նախագծի մասին՝ 24 ժամում կպատասխանենք։",
+    "viewAll": "Դիտել բոլորը",
+    "readMore": "Ավելին",
     "stats": {
-      "label": "Tvinov",
+      "label": "Թվերով",
       "title": "Չափելի արդյունքներ",
-      "subtitle": "Amjakh cikl partner konsalting, injeneria ev digital mejhaym.",
-      "years": "Tajamkneri pordz",
-      "projects": "Irakanacvats nakhagits",
-      "countries": "Erxer",
-      "experts": "Masanikner",
-      "response": "Pataskhanman jamanak"
+      "subtitle": "Ամբողջական ցիկլի գործընկեր՝ հաստատված փորձով խորհրդատվություն, ինժեներիա և digital-ում։",
+      "years": "Տարի փորձ",
+      "projects": "Իրականացված նախագծեր",
+      "countries": "Երկրներ",
+      "experts": "Մասնագետներ",
+      "response": "Պատասխանի ժամանակ"
     }
   },
   "about": {
     "title": "B2UB2B-ի մասին",
-    "subtitle": "Miijazgayin konsaltingayin, injenerakan ev tsifrayin khum",
-    "missionTitle": "Mer missia",
-    "missionText": "Linеl strategakan partner, or@ gortsume e biznes@ gaghaparits minchev hajoxutyun.",
+    "subtitle": "Միջազգային խորհրդատվական, ինժեներիական և թվային խումբ",
+    "missionTitle": "Մեր առաքելությունը",
+    "missionText": "Լինել ստրատեգական գործընկեր, որը բիզնեսը տանում է գաղափարից մինչև հաջողություն՝ խորհրդատվություն, ինժեներիա, թվային արտադրանք, մարկետինգ և գործառնական աջակցություն զարգացող և հաստատված շուկաներում։",
     "stats": {
-      "years": "Tari pordz",
-      "projects": "Irakanacvats nakhagitsner",
-      "countries": "Erkirner",
-      "services": "Ognakarner"
+      "years": "Տարի փորձ",
+      "projects": "Իրականացված նախագծեր",
+      "countries": "Երկրներ",
+      "services": "Ուղղություններ"
     },
-    "valuesTitle": "Inch e bajnum mer masin",
+    "valuesTitle": "Ինչն է բնորոշում մեզ",
     "values": {
       "expertise": {
-        "title": "Kartezats ekspertiza",
-        "text": "Mijadispiplinar teamer — konsalting, MEP, HoReCa ev digital."
+        "title": "Խորը փորձառություն",
+        "text": "Միջին մասնագիտական թիմեր՝ խորհրդատվություն, MEP ինժեներիա, HoReCa և թվային արտադրանքի մշակում։"
       },
       "international": {
-        "title": "Miijazgayin nayirutyun",
-        "text": "Gortsuneutyun Hayastanum, Vrastanum, Evropayum ev APH-um."
+        "title": "Միջազգային ներկայություն",
+        "text": "Գործունեություն Հայաստանում, Վրաստանում, Եвропայում և ԱՊՀ-ում՝ տեղական գործընկերային ցանցերով և գլոբալ ստանդարտներով։"
       },
       "fullCycle": {
-        "title": "Ambochan tsikl",
-        "text": "Mi partner — biznes-planaits minchev tsifrovatsia ev marketing."
+        "title": "Ամբողջական ցիկլ",
+        "text": "Մեկ գործընկեր՝ բիզնես-планаից մինչև շենքի ավտոմատացում, կայքի գործարկում և մարկետինգի մասշտաբավորում։"
       },
       "partnership": {
-        "title": "Istinakan gortsakayutyun",
-        "text": "Ashkhatum enq dzer teami masin, ardyaqov kapi mej."
+        "title": "Իսկական գործընկերություն",
+        "text": "Աշխատում ենք ձեր թիմի մասնակցի պես, թափանցիկ հաղորդակցությամբ և ձեր աճով չափում ենք հաջողությունը։"
       }
     },
-    "teamTitle": "Profesional team",
-    "teamText": "Injenerner, arkhitekter, UX dizaynerner, developerner, marketologner ev biznes-konsultantner."
+    "teamTitle": "Մասնագիտական թիմ",
+    "teamText": "Ինժեներներ, ճարտարապետներ, UX դիզայներներ, մշակողներ, մարկետոլոգներ և բիզնես-խորհրդատուներ՝ մեկ բրենդի ներքո պրեմիում արդյունքների համար։"
   },
   "services": {
-    "title": "Mer tsarayutyunner@",
-    "subtitle": "Yot ognakar — mi strategakan partner",
-    "benefitsTitle": "Hnchoghk artyunavetutyunner",
-    "faqTitle": "FAQ",
-    "casesTitle": "Kapvac nakhagitsner",
-    "requestTitle": "Harcnel arzhe",
-    "requestText": "Nkaragreq dzer nakhagits@ — patrastum enq individuale hashvark."
+    "title": "Մեր ծառայությունները",
+    "subtitle": "Յոթ ուղղություն՝ մեկ ստրատեգական գործընկեր",
+    "benefitsTitle": "Հիմնական առավելություններ",
+    "faqTitle": "ՀՏՀ",
+    "casesTitle": "Կապված նախագծեր",
+    "requestTitle": "Հարցնել առաջարկ",
+    "requestText": "Նկարագրեք նախագիծը՝ կպատրաստենք անհատական հաշվարկ։"
   },
   "portfolio": {
-    "title": "Portfolio",
-    "subtitle": "Nakhagitsner hospitality, injeneria ev digital-um",
-    "filterAll": "Bolor@",
-    "filterHotels": "Hyuranocner",
-    "filterRestaurants": "Restoranner",
-    "filterCommercial": "Komertsia",
-    "filterManufacturing": "Artadramutyun",
-    "filterMalls": "Torgovye tsentry",
-    "filterWeb": "Web & Digital",
-    "filterAutomation": "Avtomatatsia",
-    "worksTitle": "Ashtarakneri tsav",
-    "resultsTitle": "Ardyunqner",
-    "backToPortfolio": "Het portfolio"
+    "title": "Պորտֆելիо",
+    "subtitle": "Նախագծեր hospitality, ինժեներիա և digital-ում",
+    "filterAll": "Բոլորը",
+    "filterHotels": "Հյուրանոցներ",
+    "filterRestaurants": "Ռեստորաններ",
+    "filterCommercial": "Առևտուր",
+    "filterManufacturing": "Արտադրություն",
+    "filterMalls": "ՏՏ",
+    "filterWeb": "Վեբ և digital",
+    "filterAutomation": "Ավտոմատացում",
+    "worksTitle": "Աշխատանքների ծավալ",
+    "resultsTitle": "Արդյունքներ",
+    "backToPortfolio": "Վերադառնալ պորտֆելիո"
   },
   "map": {
-    "title": "Nakhagitsneri kartez",
-    "subtitle": "Mer nakhagitsner@ Hayastanum, Vrastanum, Evropayum",
-    "projects": "nakhagits"
+    "title": "Նախագծերի քարտեզ",
+    "subtitle": "Մեր աշխատանքները Հայաստանում, Վրաստանում, Եвропայում և այլ երկրներում",
+    "projects": "նախագծեր"
   },
   "blog": {
-    "title": "Blog",
-    "subtitle": "Insights biznesi, injeneria ev digital masin",
-    "readTime": "rd akn krknaki",
-    "backToBlog": "Het blog"
+    "title": "Բլոգ",
+    "subtitle": "Տեղեկատվություն բիզնեսի, ինժեներիայի և digital-ի մասին",
+    "readTime": "րոպե կարդալու",
+    "backToBlog": "Վերադառնալ բլոգ"
   },
   "contact": {
-    "title": "Kareli e khosel",
-    "subtitle": "Sksecq dzer nakhagits@ anvchar konsultatsiits",
+    "title": "Եկեք խոսենք",
+    "subtitle": "Սկսեք նախագիծը անվճար խորհրդատվությունից",
     "form": {
-      "name": "Anun",
-      "phone": "Heraxos",
+      "name": "Անուն",
+      "phone": "Հեռախոս",
       "email": "Email",
-      "service": "Tsarayutyun",
-      "message": "Haghordagrutyun",
-      "submit": "Ugharkel",
-      "success": "Shnorhakalutyun! Kap khamenq 24 jamum.",
-      "error": "Vor ban chisht che. Krknum pordzeq.",
-      "selectService": "Entracreq tsarayutyun"
+      "service": "Ծառայություն",
+      "message": "Հաղորդագրություն",
+      "submit": "Ուղարկել հայտ",
+      "success": "Շնորհակալություն։ 24 ժամում կկապվենք ձեզ հետ։",
+      "error": "Ինչ-որ բան սխալ գնաց։ Խնդրում ենք կրկին փորձել։",
+      "selectService": "Ընտրեք ծառայությունը"
     },
     "info": {
-      "phone": "Heraxos",
+      "phone": "Հեռախոս",
       "email": "Email",
-      "address": "Hasce",
-      "addressValue": "62 Hanrapetutyan, Yerevan, Hayastan"
+      "address": "Հասցե",
+      "addressValue": "Հանրապետության 62, Երևան, Հայաստան"
+    },
+    "sidebar": {
+      "title": "Կապվեք մեզ հետ",
+      "text": "Պատմեք ձեր նախագծի մասին՝ 24 ժամում կպատասխանենք։"
     }
   },
   "footer": {
     "tagline": "From Idea to Success",
-    "description": "Ambochan lutsumner — konsalting, injeneria, HoReCa, digital, marketing.",
-    "rights": "Bolor iravunqner@ pashtpanvac en.",
-    "services": "Tsarayutyunner",
-    "company": "Kompaniа"
+    "description": "Ամբողջական լուծումներ՝ խորհրդատվություն, ինժեներիա, HoReCa, digital, մարկետինգ և մասշտաբավորում։",
+    "rights": "Բոլոր իրավունքները պաշտպանված են։",
+    "services": "Ծառայություններ",
+    "company": "Ընկերություն"
   },
   "pillars": {
     "launch": {
-      "title": "Business Launch",
-      "text": "Biznesi launch ambochan — gaghaparits minchev arajin ekamut."
+      "title": "Բիզնեսի մեկնարկ",
+      "text": "Բիզնեսի «բանալին» մեկնարկ՝ գաղափարից և բիզնես-մոդելից մինչև իրավական ձևավորում և առաջին եկամուտ։"
     },
     "engineering": {
-      "title": "Engineering & HoReCa",
-      "text": "Hyuranocner, restoranner, HVAC, MEP — design, supply, montazh."
+      "title": "Ինժեներia և HoReCa",
+      "text": "Հյուրանոցներ, restoranner, HVAC, MEP՝ նախագծում, մատակարարում, տեղադրում և գործարկում։"
     },
     "digital": {
-      "title": "Digital & Growth",
-      "text": "Kayqer, apps, CRM, marketing, AI ev mashtabavorum."
+      "title": "Digital և աճ",
+      "text": "Կայքեր, հավելվածներ, CRM, մարկետինգ, AI ավտոմատացում և միջազգային մասշտաբավորում։"
     }
   }
 }

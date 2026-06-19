@@ -17,13 +17,17 @@ type ContactFormProps = {
 export function ContactForm({ locale, defaultService, showSidebar = true }: ContactFormProps) {
   const t = useTranslations("contact.form");
   const tInfo = useTranslations("contact.info");
+  const tSidebar = useTranslations("contact.sidebar");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("loading");
     const formData = new FormData(e.currentTarget);
-    const payload = Object.fromEntries(formData.entries());
+    const payload = {
+      ...Object.fromEntries(formData.entries()),
+      locale,
+    };
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
@@ -58,8 +62,8 @@ export function ContactForm({ locale, defaultService, showSidebar = true }: Cont
               <Sparkles size={18} className="text-sky-500" />
               <span className="text-xs font-bold uppercase tracking-[0.25em] text-sky-600">B2UB2B</span>
             </div>
-            <h3 className="mt-4 text-2xl font-bold tracking-tight text-primary">Let&apos;s connect</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted">Tell us about your project — we respond within 24 hours.</p>
+            <h3 className="mt-4 text-2xl font-bold tracking-tight text-primary">{tSidebar("title")}</h3>
+            <p className="mt-3 text-sm leading-relaxed text-muted">{tSidebar("text")}</p>
             <div className="mt-8 space-y-4">
               <InfoRow icon={<Mail size={16} />} label={tInfo("email")} value="hello@b2ub2b.com" />
               <InfoRow icon={<Phone size={16} />} label={tInfo("phone")} value="+374 77 638 778" />

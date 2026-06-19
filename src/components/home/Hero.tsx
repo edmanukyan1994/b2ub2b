@@ -10,13 +10,14 @@ import { clientLogos } from "@/content/portfolio";
 
 export function Hero() {
   const t = useTranslations("hero");
+  const tHome = useTranslations("home");
   const reducedMotion = useReducedMotion();
 
   const stats = [
-    { value: "12+", label: "Years" },
-    { value: "150+", label: "Projects" },
-    { value: "8+", label: "Countries" },
-    { value: "7", label: "Services" },
+    { value: "12+", label: t("miniStats.years") },
+    { value: "150+", label: t("miniStats.projects") },
+    { value: "8+", label: t("miniStats.countries") },
+    { value: "7", label: t("miniStats.services") },
   ];
 
   const fade = (delay: number) =>
@@ -33,9 +34,9 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 pb-8 md:px-6 lg:px-8">
         <LiquidHeroBoard className="flex flex-col justify-center">
             <motion.div {...fade(0)} className="mb-5 flex flex-wrap gap-2">
-              <Badge><ShieldCheck size={14} className="mr-1.5 text-sky-500" />Enterprise-grade</Badge>
-              <Badge><Globe2 size={14} className="mr-1.5 text-teal-500" />Armenia · Georgia · EU</Badge>
-              <Badge><TrendingUp size={14} className="mr-1.5 text-blue-600" />Full-cycle partner</Badge>
+              <Badge><ShieldCheck size={14} className="mr-1.5 text-sky-500" />{t("badges.enterprise")}</Badge>
+              <Badge><Globe2 size={14} className="mr-1.5 text-teal-500" />{t("badges.regions")}</Badge>
+              <Badge><TrendingUp size={14} className="mr-1.5 text-blue-600" />{t("badges.partner")}</Badge>
             </motion.div>
 
             <motion.p {...fade(0.05)} className="mb-3 text-sm font-semibold text-secondary">
@@ -74,7 +75,7 @@ export function Hero() {
 
         <motion.div {...fade(0.45)} className="liquid-glass-panel relative mt-4 overflow-hidden px-5 py-5 md:mt-5 md:px-8 md:py-6">
           <p className="relative z-10 mb-4 text-center text-xs font-bold uppercase tracking-[0.25em] text-muted">
-            Trusted by industry leaders
+            {tHome("clientsTitle")}
           </p>
           <div className="relative z-10">
             <ClientLogoMarquee logos={clientLogos} repeat={2} gapClassName="gap-10 md:gap-14" />

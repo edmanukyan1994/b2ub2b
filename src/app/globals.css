@@ -13,11 +13,11 @@
   --radius-pill: 9999px;
   --radius-panel: 2rem;
   --radius-panel-lg: 2.5rem;
-  /* Blur-frame glass — единый frost как у меню */
-  --glass-blur: 100px;
-  --glass-saturate: 200%;
-  --glass-brightness: 1.06;
-  --glass-fill: rgba(255, 255, 255, 0.24);
+  /* Blur-frame glass — tune via these tokens */
+  --glass-blur: 48px;              /* was 100px — backdrop blur radius */
+  --glass-saturate: 165%;          /* was 200% — color boost behind glass */
+  --glass-brightness: 1.04;        /* was 1.06 */
+  --glass-fill: rgba(255, 255, 255, 0.3); /* was 0.24 (~30% white) */
   --glass-border: rgba(255, 255, 255, 0.5);
   --glass-border-strong: rgba(255, 255, 255, 0.58);
   --glass-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
@@ -86,7 +86,7 @@ body {
 
 body[data-menu-open] .page-content,
 body[data-menu-open] footer {
-  filter: blur(16px) saturate(120%);
+  filter: blur(10px) saturate(110%);
   pointer-events: none;
   user-select: none;
 }
@@ -140,7 +140,7 @@ body[data-menu-open] footer {
 .glass-subtle::before {
   content: "";
   position: absolute;
-  inset: -40px;
+  inset: -24px;
   border-radius: inherit;
   pointer-events: none;
   z-index: 0;

@@ -19,12 +19,29 @@
     "description": "We build transformative business solutions — from launch and engineering to digitalization, marketing, and scale across Armenia, Georgia, Europe, and CIS.",
     "ctaPrimary": "Discuss project",
     "ctaSecondary": "View portfolio",
-    "ctaQuote": "Request estimate"
+    "ctaQuote": "Request estimate",
+    "badges": {
+      "enterprise": "Enterprise-grade",
+      "regions": "Armenia · Georgia · EU",
+      "partner": "Full-cycle partner"
+    },
+    "miniStats": {
+      "years": "Years",
+      "projects": "Projects",
+      "countries": "Countries",
+      "services": "Services"
+    }
   },
   "home": {
     "aboutLabel": "About",
     "aboutTitle": "Building business together",
     "aboutText": "B2UB2B is a full-cycle partner for companies that want to launch, grow, and scale internationally. We combine business consulting, engineering excellence, HoReCa expertise, and digital innovation under one roof.",
+    "aboutItems": {
+      "consulting": "Business consulting & launch",
+      "engineering": "Engineering & HoReCa solutions",
+      "digital": "Digital products & automation",
+      "marketing": "Marketing, branding & scale"
+    },
     "servicesLabel": "Services",
     "servicesTitle": "Complete business solutions",
     "pillarsLabel": "Focus areas",
@@ -38,6 +55,7 @@
     "geoLabel": "Geography",
     "geoTitle": "Global reach, local expertise",
     "geoText": "We operate across Armenia, Georgia, Germany, Netherlands, France, Italy, UAE, and beyond — with deep local knowledge and international standards.",
+    "countryList": ["Armenia", "Georgia", "Germany", "Netherlands", "France", "Italy", "UAE"],
     "testimonialsLabel": "Testimonials",
     "testimonialsTitle": "What clients say",
     "partnersLabel": "Partners",
@@ -145,6 +163,10 @@
       "email": "Email",
       "address": "Address",
       "addressValue": "62 Republic Ave, Yerevan, Armenia"
+    },
+    "sidebar": {
+      "title": "Let's connect",
+      "text": "Tell us about your project — we respond within 24 hours."
     }
   },
   "footer": {

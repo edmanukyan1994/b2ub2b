@@ -8,7 +8,7 @@ import { LiquidBackground } from "@/components/ui/LiquidBackground";
 export function AboutSection({ locale }: { locale: Locale }) {
   const t = useTranslations("home");
   void locale;
-  const items = ["Business consulting & launch", "Engineering & HoReCa solutions", "Digital products & automation", "Marketing, branding & scale"];
+  const items = ["consulting", "engineering", "digital", "marketing"] as const;
 
   return (
     <section className="section-liquid relative border-t border-white/20 py-24 md:py-32">
@@ -27,7 +27,7 @@ export function AboutSection({ locale }: { locale: Locale }) {
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-cta/10 text-cta">
                       <Check size={18} strokeWidth={2.5} />
                     </span>
-                    <p className="font-medium text-primary">{item}</p>
+                    <p className="font-medium text-primary">{t(`aboutItems.${item}`)}</p>
                   </div>
                 ))}
               </div>

@@ -16,6 +16,7 @@ export default async function MapPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
   const t = await getTranslations("map");
+  const tNav = await getTranslations("nav");
   const loc = locale as Locale;
 
   const byCountry = mapProjects.reduce<Record<string, typeof mapProjects>>(
@@ -32,7 +33,7 @@ export default async function MapPage({ params }: Props) {
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimatedSection>
-            <SectionHeader title={t("title")} label="Map" description={t("subtitle")} />
+            <SectionHeader title={t("title")} label={tNav("map")} description={t("subtitle")} />
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <ProjectsMap locale={loc} />

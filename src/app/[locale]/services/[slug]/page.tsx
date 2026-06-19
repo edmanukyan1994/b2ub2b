@@ -32,6 +32,8 @@ export default async function ServicePage({ params }: Props) {
   if (!service) notFound();
 
   const t = await getTranslations("services");
+  const tHome = await getTranslations("home");
+  const tNav = await getTranslations("nav");
   const loc = locale as Locale;
   const related = portfolioProjects.slice(0, 2);
 
@@ -79,7 +81,7 @@ export default async function ServicePage({ params }: Props) {
         <section className="border-t border-border bg-accent-light py-24 md:py-32">
           <div className="mx-auto max-w-3xl px-6 lg:px-8">
             <AnimatedSection>
-              <SectionHeader title={t("faqTitle")} label="FAQ" />
+              <SectionHeader title={t("faqTitle")} label={t("faqTitle")} />
             </AnimatedSection>
             <div className="space-y-4">
               {service.faq.map((item, i) => (
@@ -98,7 +100,7 @@ export default async function ServicePage({ params }: Props) {
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimatedSection>
-            <SectionHeader title={t("casesTitle")} label="Cases" />
+            <SectionHeader title={t("casesTitle")} label={tHome("casesLabel")} />
           </AnimatedSection>
           <div className="grid gap-6 md:grid-cols-2">
             {related.map((project) => (
@@ -123,7 +125,7 @@ export default async function ServicePage({ params }: Props) {
           <AnimatedSection>
             <SectionHeader
               title={t("requestTitle")}
-              label="Contact"
+              label={tNav("contact")}
               description={t("requestText")}
             />
             <ContactForm locale={loc} defaultService={service.slug} showSidebar={false} />

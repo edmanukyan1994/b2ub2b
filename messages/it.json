@@ -19,12 +19,29 @@
     "description": "Creiamo soluzioni business trasformative — dal lancio e ingegneria alla digitalizzazione, marketing e scale in Armenia, Georgia, Europa e CIS.",
     "ctaPrimary": "Discuti il progetto",
     "ctaSecondary": "Vedi portfolio",
-    "ctaQuote": "Richiedi preventivo"
+    "ctaQuote": "Richiedi preventivo",
+    "badges": {
+      "enterprise": "Livello enterprise",
+      "regions": "Armenia · Georgia · UE",
+      "partner": "Partner full-cycle"
+    },
+    "miniStats": {
+      "years": "Anni",
+      "projects": "Progetti",
+      "countries": "Paesi",
+      "services": "Servizi"
+    }
   },
   "home": {
     "aboutLabel": "Chi siamo",
-    "aboutTitle": "Building Business Together",
+    "aboutTitle": "Costruiamo business insieme",
     "aboutText": "B2UB2B è un partner full-cycle per aziende che vogliono lanciare, crescere e scalare a livello internazionale. Consulenza, ingegneria, HoReCa e digital — sotto un unico tetto.",
+    "aboutItems": {
+      "consulting": "Consulenza aziendale e lancio",
+      "engineering": "Ingegneria e soluzioni HoReCa",
+      "digital": "Prodotti digitali e automazione",
+      "marketing": "Marketing, branding e scale"
+    },
     "servicesLabel": "Servizi",
     "servicesTitle": "Soluzioni complete",
     "pillarsLabel": "Aree",
@@ -38,6 +55,7 @@
     "geoLabel": "Geografia",
     "geoTitle": "Portata globale, expertise locale",
     "geoText": "Operiamo in Armenia, Georgia, Germania, Paesi Bassi, Francia, Italia, UAE e oltre.",
+    "countryList": ["Armenia", "Georgia", "Germania", "Paesi Bassi", "Francia", "Italia", "UAE"],
     "testimonialsLabel": "Testimonial",
     "testimonialsTitle": "Cosa dicono i clienti",
     "partnersLabel": "Partner",
@@ -145,6 +163,10 @@
       "email": "Email",
       "address": "Indirizzo",
       "addressValue": "62 Republic Ave, Yerevan, Armenia"
+    },
+    "sidebar": {
+      "title": "Mettiamoci in contatto",
+      "text": "Raccontaci il tuo progetto — rispondiamo entro 24 ore."
     }
   },
   "footer": {
@@ -156,15 +178,15 @@
   },
   "pillars": {
     "launch": {
-      "title": "Business Launch",
+      "title": "Lancio business",
       "text": "Lancio business chiavi in mano — dall'idea al primo fatturato."
     },
     "engineering": {
-      "title": "Engineering & HoReCa",
+      "title": "Ingegneria e HoReCa",
       "text": "Hotel, ristoranti, HVAC, MEP — design, fornitura, installazione e avvio."
     },
     "digital": {
-      "title": "Digital & Growth",
+      "title": "Digital e crescita",
       "text": "Siti, app, CRM, marketing, automazione AI e scale internazionale."
     }
   }
