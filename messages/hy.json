@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "B2UB2B — Գաղափարից մինչև հաջողություն",
+    "description": "Միջազգային կոնսալտингային, ինժեներական և թվային խումբ։ Բիզնեսի համակարգային լուծումներ Հայաստանում, Վրաստանում, Եвропայում և ԱՊՀ-ում։"
+  },
+  "nav": {
+    "home": "Գլխավոր",
+    "about": "Մեր մասին",
+    "services": "Ծառայություններ",
+    "portfolio": "Պորտֆոլիо",
+    "map": "Նախագծերի քարտեզ",
+    "blog": "Բլոգ",
+    "contact": "Կապ",
+    "getStarted": "Սկսել"
+  },
+  "hero": {
+    "tagline": "From Idea to Success",
+    "subtitle": "Միջազգային կոնսալտингային, ինժեներական և թվային խումբ",
+    "description": "Ստեղծում ենք transformativ biznes lutsumner՝ launch-ից և injeneria-ից մինչև tsifrovatsia, marketing և mashtabavorum Հայաստանում, Vrastanum, Evropayum և APH-um.",
+    "ctaPrimary": "Քննարկել նախագիծը",
+    "ctaSecondary": "Դիտել portfolio-ն",
+    "ctaQuote": "Հարցնել գնահատական"
+  },
+  "home": {
+    "aboutLabel": "Մեր մասին",
+    "aboutTitle": "Building Business Together",
+    "aboutText": "B2UB2B-ը ambochan kikl partner e kompanianeri hamar, oronk uzum en launch, zargatsum ev mashtabavorum. Biznes-konsalting, injeneria, HoReCa ev digital — mi chkran tak.",
+    "servicesLabel": "Ծառայություններ",
+    "servicesTitle": "Ambochan lutsumner",
+    "pillarsLabel": "Ognakarner",
+    "pillarsTitle": "Erku stolp zargatsman",
+    "portfolioLabel": "Ashtarakner",
+    "portfolioTitle": "Entracvats nakhagitsner",
+    "clientsLabel": "Hvoginer",
+    "clientsTitle": "Industriayi lidernern en havatum",
+    "casesLabel": "Keysner",
+    "casesTitle": "Karevor ardyunqner",
+    "geoLabel": "Geografia",
+    "geoTitle": "Global het, lokal ekspertiza",
+    "geoText": "Ashtarakum enq Hayastanum, Vrastanum, Germanium, Niderlandnerum, Fransium, Italium, AMU-um ev ayl ev erkirnerum.",
+    "testimonialsLabel": "Kartezner",
+    "testimonialsTitle": "Inch en asum hvoginer@",
+    "partnersLabel": "Gortsakner",
+    "partnersTitle": "Tekhnologia ev industriayi gortsakner",
+    "partnersText": "Integracnum enq lratun platformner injeneria, avtomatizacia, cloud, CRM ev marketingi hamar.",
+    "ctaTitle": "Patrast eq mi ban mecatel?",
+    "ctaText": "Patsaheq dzer nakhagits@ — patasxanum enq 24 jamum.",
+    "viewAll": "Ditel bolor@",
+    "readMore": "Aveli manramand",
+    "stats": {
+      "label": "Tvinov",
+      "title": "Չափելի արդյունքներ",
+      "subtitle": "Amjakh cikl partner konsalting, injeneria ev digital mejhaym.",
+      "years": "Tajamkneri pordz",
+      "projects": "Irakanacvats nakhagits",
+      "countries": "Erxer",
+      "experts": "Masanikner",
+      "response": "Pataskhanman jamanak"
+    }
+  },
+  "about": {
+    "title": "B2UB2B-ի մասին",
+    "subtitle": "Miijazgayin konsaltingayin, injenerakan ev tsifrayin khum",
+    "missionTitle": "Mer missia",
+    "missionText": "Linеl strategakan partner, or@ gortsume e biznes@ gaghaparits minchev hajoxutyun.",
+    "stats": {
+      "years": "Tari pordz",
+      "projects": "Irakanacvats nakhagitsner",
+      "countries": "Erkirner",
+      "services": "Ognakarner"
+    },
+    "valuesTitle": "Inch e bajnum mer masin",
+    "values": {
+      "expertise": {
+        "title": "Kartezats ekspertiza",
+        "text": "Mijadispiplinar teamer — konsalting, MEP, HoReCa ev digital."
+      },
+      "international": {
+        "title": "Miijazgayin nayirutyun",
+        "text": "Gortsuneutyun Hayastanum, Vrastanum, Evropayum ev APH-um."
+      },
+      "fullCycle": {
+        "title": "Ambochan tsikl",
+        "text": "Mi partner — biznes-planaits minchev tsifrovatsia ev marketing."
+      },
+      "partnership": {
+        "title": "Istinakan gortsakayutyun",
+        "text": "Ashkhatum enq dzer teami masin, ardyaqov kapi mej."
+      }
+    },
+    "teamTitle": "Profesional team",
+    "teamText": "Injenerner, arkhitekter, UX dizaynerner, developerner, marketologner ev biznes-konsultantner."
+  },
+  "services": {
+    "title": "Mer tsarayutyunner@",
+    "subtitle": "Yot ognakar — mi strategakan partner",
+    "benefitsTitle": "Hnchoghk artyunavetutyunner",
+    "faqTitle": "FAQ",
+    "casesTitle": "Kapvac nakhagitsner",
+    "requestTitle": "Harcnel arzhe",
+    "requestText": "Nkaragreq dzer nakhagits@ — patrastum enq individuale hashvark."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Nakhagitsner hospitality, injeneria ev digital-um",
+    "filterAll": "Bolor@",
+    "filterHotels": "Hyuranocner",
+    "filterRestaurants": "Restoranner",
+    "filterCommercial": "Komertsia",
+    "filterManufacturing": "Artadramutyun",
+    "filterMalls": "Torgovye tsentry",
+    "filterWeb": "Web & Digital",
+    "filterAutomation": "Avtomatatsia",
+    "worksTitle": "Ashtarakneri tsav",
+    "resultsTitle": "Ardyunqner",
+    "backToPortfolio": "Het portfolio"
+  },
+  "map": {
+    "title": "Nakhagitsneri kartez",
+    "subtitle": "Mer nakhagitsner@ Hayastanum, Vrastanum, Evropayum",
+    "projects": "nakhagits"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Insights biznesi, injeneria ev digital masin",
+    "readTime": "rd akn krknaki",
+    "backToBlog": "Het blog"
+  },
+  "contact": {
+    "title": "Kareli e khosel",
+    "subtitle": "Sksecq dzer nakhagits@ anvchar konsultatsiits",
+    "form": {
+      "name": "Anun",
+      "phone": "Heraxos",
+      "email": "Email",
+      "service": "Tsarayutyun",
+      "message": "Haghordagrutyun",
+      "submit": "Ugharkel",
+      "success": "Shnorhakalutyun! Kap khamenq 24 jamum.",
+      "error": "Vor ban chisht che. Krknum pordzeq.",
+      "selectService": "Entracreq tsarayutyun"
+    },
+    "info": {
+      "phone": "Heraxos",
+      "email": "Email",
+      "address": "Hasce",
+      "addressValue": "62 Hanrapetutyan, Yerevan, Hayastan"
+    }
+  },
+  "footer": {
+    "tagline": "From Idea to Success",
+    "description": "Ambochan lutsumner — konsalting, injeneria, HoReCa, digital, marketing.",
+    "rights": "Bolor iravunqner@ pashtpanvac en.",
+    "services": "Tsarayutyunner",
+    "company": "Kompaniа"
+  },
+  "pillars": {
+    "launch": {
+      "title": "Business Launch",
+      "text": "Biznesi launch ambochan — gaghaparits minchev arajin ekamut."
+    },
+    "engineering": {
+      "title": "Engineering & HoReCa",
+      "text": "Hyuranocner, restoranner, HVAC, MEP — design, supply, montazh."
+    },
+    "digital": {
+      "title": "Digital & Growth",
+      "text": "Kayqer, apps, CRM, marketing, AI ev mashtabavorum."
+    }
+  }
+}

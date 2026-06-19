@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "B2UB2B — Dall'idea al successo",
+    "description": "Gruppo internazionale di consulenza, ingegneria e digitale. Soluzioni complete per il business in Armenia, Georgia, Europa e CIS."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "Chi siamo",
+    "services": "Servizi",
+    "portfolio": "Portfolio",
+    "map": "Mappa progetti",
+    "blog": "Blog",
+    "contact": "Contatti",
+    "getStarted": "Inizia"
+  },
+  "hero": {
+    "tagline": "From Idea to Success",
+    "subtitle": "Gruppo internazionale di consulenza, ingegneria e digitale",
+    "description": "Creiamo soluzioni business trasformative — dal lancio e ingegneria alla digitalizzazione, marketing e scale in Armenia, Georgia, Europa e CIS.",
+    "ctaPrimary": "Discuti il progetto",
+    "ctaSecondary": "Vedi portfolio",
+    "ctaQuote": "Richiedi preventivo"
+  },
+  "home": {
+    "aboutLabel": "Chi siamo",
+    "aboutTitle": "Building Business Together",
+    "aboutText": "B2UB2B è un partner full-cycle per aziende che vogliono lanciare, crescere e scalare a livello internazionale. Consulenza, ingegneria, HoReCa e digital — sotto un unico tetto.",
+    "servicesLabel": "Servizi",
+    "servicesTitle": "Soluzioni complete",
+    "pillarsLabel": "Aree",
+    "pillarsTitle": "Tre pilastri di crescita",
+    "portfolioLabel": "Lavori",
+    "portfolioTitle": "Progetti selezionati",
+    "clientsLabel": "Clienti",
+    "clientsTitle": "Scelti dai leader del settore",
+    "casesLabel": "Casi",
+    "casesTitle": "Risultati che contano",
+    "geoLabel": "Geografia",
+    "geoTitle": "Portata globale, expertise locale",
+    "geoText": "Operiamo in Armenia, Georgia, Germania, Paesi Bassi, Francia, Italia, UAE e oltre.",
+    "testimonialsLabel": "Testimonial",
+    "testimonialsTitle": "Cosa dicono i clienti",
+    "partnersLabel": "Partner",
+    "partnersTitle": "Partner tecnologici e industriali",
+    "partnersText": "Integriamo le migliori piattaforme per ingegneria, automazione, cloud, CRM e marketing.",
+    "ctaTitle": "Pronti a costruire qualcosa di grande?",
+    "ctaText": "Raccontaci il tuo progetto — rispondiamo entro 24 ore.",
+    "viewAll": "Vedi tutti",
+    "readMore": "Leggi di più",
+    "stats": {
+      "label": "In numeri",
+      "title": "Risultati misurabili",
+      "subtitle": "Partner full-cycle con esperienza comprovata in consulenza, ingegneria e digital.",
+      "years": "Anni di esperienza",
+      "projects": "Progetti consegnati",
+      "countries": "Paesi",
+      "experts": "Esperti nel team",
+      "response": "Tempo di risposta"
+    }
+  },
+  "about": {
+    "title": "Chi è B2UB2B",
+    "subtitle": "Gruppo internazionale di consulenza, ingegneria e digitale",
+    "missionTitle": "La nostra missione",
+    "missionText": "Essere il partner strategico che porta le aziende dall'idea al successo — consulenza, ingegneria, prodotti digitali, marketing e supporto operativo.",
+    "stats": {
+      "years": "Anni di esperienza",
+      "projects": "Progetti consegnati",
+      "countries": "Paesi",
+      "services": "Direzioni di servizio"
+    },
+    "valuesTitle": "Cosa ci definisce",
+    "values": {
+      "expertise": {
+        "title": "Expertise profonda",
+        "text": "Team interdisciplinari: consulenza, ingegneria MEP, HoReCa e sviluppo prodotti digitali."
+      },
+      "international": {
+        "title": "Presenza internazionale",
+        "text": "Operazioni in Armenia, Georgia, Europa e CIS con reti partner locali."
+      },
+      "fullCycle": {
+        "title": "Consegna full-cycle",
+        "text": "Un partner dal business plan all'automazione edifici, lancio sito web e scale marketing."
+      },
+      "partnership": {
+        "title": "Vera partnership",
+        "text": "Lavoriamo con il vostro team, comunicazione trasparente, successo misurato dalla vostra crescita."
+      }
+    },
+    "teamTitle": "Team professionale",
+    "teamText": "Ingegneri, architetti, UX designer, developer, marketer e consulenti business — sotto un unico brand."
+  },
+  "services": {
+    "title": "I nostri servizi",
+    "subtitle": "Sette direzioni — un partner strategico",
+    "benefitsTitle": "Vantaggi chiave",
+    "faqTitle": "FAQ",
+    "casesTitle": "Progetti correlati",
+    "requestTitle": "Richiedi proposta",
+    "requestText": "Descrivi il progetto — prepareremo un preventivo su misura."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Progetti in hospitality, ingegneria e digital",
+    "filterAll": "Tutti",
+    "filterHotels": "Hotel",
+    "filterRestaurants": "Ristoranti",
+    "filterCommercial": "Commerciale",
+    "filterManufacturing": "Produzione",
+    "filterMalls": "Centri commerciali",
+    "filterWeb": "Web & Digital",
+    "filterAutomation": "Automazione",
+    "worksTitle": "Ambito di lavoro",
+    "resultsTitle": "Risultati",
+    "backToPortfolio": "Torna al portfolio"
+  },
+  "map": {
+    "title": "Mappa progetti",
+    "subtitle": "I nostri lavori in Armenia, Georgia, Europa e oltre",
+    "projects": "progetti"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Insights su business, ingegneria e digital",
+    "readTime": "min di lettura",
+    "backToBlog": "Torna al blog"
+  },
+  "contact": {
+    "title": "Parliamone",
+    "subtitle": "Inizia il progetto con una consulenza gratuita",
+    "form": {
+      "name": "Nome",
+      "phone": "Telefono",
+      "email": "Email",
+      "service": "Servizio",
+      "message": "Messaggio",
+      "submit": "Invia richiesta",
+      "success": "Grazie! Ti contattiamo entro 24 ore.",
+      "error": "Qualcosa è andato storto. Riprova.",
+      "selectService": "Seleziona servizio"
+    },
+    "info": {
+      "phone": "Telefono",
+      "email": "Email",
+      "address": "Indirizzo",
+      "addressValue": "62 Republic Ave, Yerevan, Armenia"
+    }
+  },
+  "footer": {
+    "tagline": "From Idea to Success",
+    "description": "Soluzioni complete — consulenza, ingegneria, HoReCa, digital, marketing e scale.",
+    "rights": "Tutti i diritti riservati.",
+    "services": "Servizi",
+    "company": "Azienda"
+  },
+  "pillars": {
+    "launch": {
+      "title": "Business Launch",
+      "text": "Lancio business chiavi in mano — dall'idea al primo fatturato."
+    },
+    "engineering": {
+      "title": "Engineering & HoReCa",
+      "text": "Hotel, ristoranti, HVAC, MEP — design, fornitura, installazione e avvio."
+    },
+    "digital": {
+      "title": "Digital & Growth",
+      "text": "Siti, app, CRM, marketing, automazione AI e scale internazionale."
+    }
+  }
+}

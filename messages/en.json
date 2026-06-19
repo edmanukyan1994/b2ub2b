@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "B2UB2B — From Idea to Success",
+    "description": "International consulting, engineering, and digital group. Complete business solutions in Armenia, Georgia, Europe, and CIS."
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "map": "Projects Map",
+    "blog": "Blog",
+    "contact": "Contact",
+    "getStarted": "Get started"
+  },
+  "hero": {
+    "tagline": "From Idea to Success",
+    "subtitle": "International consulting, engineering & digital group",
+    "description": "We build transformative business solutions — from launch and engineering to digitalization, marketing, and scale across Armenia, Georgia, Europe, and CIS.",
+    "ctaPrimary": "Discuss project",
+    "ctaSecondary": "View portfolio",
+    "ctaQuote": "Request estimate"
+  },
+  "home": {
+    "aboutLabel": "About",
+    "aboutTitle": "Building business together",
+    "aboutText": "B2UB2B is a full-cycle partner for companies that want to launch, grow, and scale internationally. We combine business consulting, engineering excellence, HoReCa expertise, and digital innovation under one roof.",
+    "servicesLabel": "Services",
+    "servicesTitle": "Complete business solutions",
+    "pillarsLabel": "Focus areas",
+    "pillarsTitle": "Three pillars of growth",
+    "portfolioLabel": "Work",
+    "portfolioTitle": "Selected projects",
+    "clientsLabel": "Clients",
+    "clientsTitle": "Trusted by industry leaders",
+    "casesLabel": "Cases",
+    "casesTitle": "Results that matter",
+    "geoLabel": "Geography",
+    "geoTitle": "Global reach, local expertise",
+    "geoText": "We operate across Armenia, Georgia, Germany, Netherlands, France, Italy, UAE, and beyond — with deep local knowledge and international standards.",
+    "testimonialsLabel": "Testimonials",
+    "testimonialsTitle": "What clients say",
+    "partnersLabel": "Partners",
+    "partnersTitle": "Technology & industry partners",
+    "partnersText": "We integrate best-in-class platforms for engineering, automation, cloud, CRM, and marketing.",
+    "ctaTitle": "Ready to build something great?",
+    "ctaText": "Tell us about your project — we'll respond within 24 hours.",
+    "viewAll": "View all",
+    "readMore": "Read more",
+    "stats": {
+      "label": "By the numbers",
+      "title": "Results you can measure",
+      "subtitle": "A full-cycle partner with proven delivery across consulting, engineering, and digital.",
+      "years": "Years of experience",
+      "projects": "Projects delivered",
+      "countries": "Countries",
+      "experts": "Experts on team",
+      "response": "Response time"
+    }
+  },
+  "about": {
+    "title": "About B2UB2B",
+    "subtitle": "International consulting, engineering & digital group",
+    "missionTitle": "Our mission",
+    "missionText": "To be the strategic partner that takes businesses from idea to success — providing consulting, engineering, digital products, marketing, and operational support across emerging and established markets.",
+    "stats": {
+      "years": "Years of experience",
+      "projects": "Projects delivered",
+      "countries": "Countries",
+      "services": "Service directions"
+    },
+    "valuesTitle": "What defines us",
+    "values": {
+      "expertise": {
+        "title": "Deep expertise",
+        "text": "Cross-disciplinary teams spanning consulting, MEP engineering, HoReCa, and digital product development."
+      },
+      "international": {
+        "title": "International presence",
+        "text": "Operations in Armenia, Georgia, Europe, and CIS with local partner networks and global standards."
+      },
+      "fullCycle": {
+        "title": "Full-cycle delivery",
+        "text": "One partner from business plan to building automation, website launch, and marketing scale."
+      },
+      "partnership": {
+        "title": "True partnership",
+        "text": "We embed with your team, communicate transparently, and measure success by your growth."
+      }
+    },
+    "teamTitle": "Professional team",
+    "teamText": "Engineers, architects, UX designers, developers, marketers, and business consultants — united under one brand to deliver premium results."
+  },
+  "services": {
+    "title": "Our Services",
+    "subtitle": "Seven directions — one strategic partner",
+    "benefitsTitle": "Key benefits",
+    "faqTitle": "FAQ",
+    "casesTitle": "Related projects",
+    "requestTitle": "Request a proposal",
+    "requestText": "Describe your project and we'll prepare a tailored estimate."
+  },
+  "portfolio": {
+    "title": "Portfolio",
+    "subtitle": "Projects across hospitality, engineering, and digital",
+    "filterAll": "All",
+    "filterHotels": "Hotels",
+    "filterRestaurants": "Restaurants",
+    "filterCommercial": "Commercial",
+    "filterManufacturing": "Manufacturing",
+    "filterMalls": "Malls",
+    "filterWeb": "Web & Digital",
+    "filterAutomation": "Automation",
+    "worksTitle": "Scope of work",
+    "resultsTitle": "Results",
+    "backToPortfolio": "Back to portfolio"
+  },
+  "map": {
+    "title": "Projects Map",
+    "subtitle": "Our work across Armenia, Georgia, Europe, and beyond",
+    "projects": "projects"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Insights on business, engineering, and digital",
+    "readTime": "min read",
+    "backToBlog": "Back to blog"
+  },
+  "contact": {
+    "title": "Let's talk",
+    "subtitle": "Start your project with a free consultation",
+    "form": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "service": "Service",
+      "message": "Message",
+      "submit": "Send request",
+      "success": "Thank you! We'll contact you within 24 hours.",
+      "error": "Something went wrong. Please try again.",
+      "selectService": "Select a service"
+    },
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "addressValue": "62 Republic Ave, Yerevan, Armenia"
+    }
+  },
+  "footer": {
+    "tagline": "From Idea to Success",
+    "description": "Complete business solutions — consulting, engineering, HoReCa, digital, marketing, and scale.",
+    "rights": "All rights reserved.",
+    "services": "Services",
+    "company": "Company"
+  },
+  "pillars": {
+    "launch": {
+      "title": "Business Launch",
+      "text": "Turnkey business launch — from idea and business model to legal setup and first revenue."
+    },
+    "engineering": {
+      "title": "Engineering & HoReCa",
+      "text": "Hotels, restaurants, HVAC, MEP — design, supply, installation, and operational launch."
+    },
+    "digital": {
+      "title": "Digital & Growth",
+      "text": "Websites, apps, CRM, marketing, AI automation, and international scale."
+    }
+  }
+}
