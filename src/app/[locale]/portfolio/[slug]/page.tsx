@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
   const project = getProject(slug);
   if (!project) return {};
-  return { title: `${project.title[locale as Locale]} | B2UB2B` };
+  return { title: `${project.title[locale as Locale]} | B2U B2B` };
 }
 
 export default async function ProjectPage({ params }: Props) {

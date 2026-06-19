@@ -25,7 +25,7 @@ export function getTelegramChatIds(): string[] {
 
 export function formatLeadMessage(lead: LeadPayload) {
   const lines = [
-    "🆕 <b>Новая заявка B2UB2B</b>",
+    "🆕 <b>Новая заявка B2U B2B</b>",
     "",
     `👤 <b>Имя:</b> ${escapeHtml(lead.name)}`,
     `📞 <b>Телефон:</b> ${escapeHtml(lead.phone)}`,

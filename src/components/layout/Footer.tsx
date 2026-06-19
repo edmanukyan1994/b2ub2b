@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import Image from "next/image";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Link } from "@/i18n/navigation";
 import { services } from "@/content/services";
 import { Button } from "@/components/ui/Button";
@@ -14,7 +14,7 @@ export function Footer() {
         <div className="liquid-glass-panel p-10 md:p-12">
           <div className="relative z-10 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
             <div className="lg:col-span-2">
-              <Image src="/logo.svg" alt="B2UB2B" width={112} height={28} />
+              <BrandLogo width={128} />
               <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{t("description")}</p>
               <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-sky-600">{t("tagline")}</p>
               <div className="mt-8"><Button href="/contact" size="sm">{nav("getStarted")}</Button></div>
@@ -50,7 +50,7 @@ export function Footer() {
             </div>
           </div>
           <div className="relative z-10 mt-10 flex flex-col gap-4 border-t border-white/40 pt-8 text-sm text-muted md:flex-row md:items-center md:justify-between">
-            <p>© {new Date().getFullYear()} B2UB2B. {t("rights")}</p>
+            <p>© {new Date().getFullYear()} B2U B2B. {t("rights")}</p>
             <p className="font-semibold">b2ub2b.com</p>
           </div>
         </div>

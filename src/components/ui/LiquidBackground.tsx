@@ -48,7 +48,7 @@ export function LiquidPanel({ className }: { className?: string }) {
         </div>
 
         <div className="liquid-glass-pill-nested mx-auto w-fit px-6 py-4 text-center">
-          <p className="relative z-10 text-xs font-bold uppercase tracking-[0.25em] text-blue-600">B2UB2B</p>
+          <p className="relative z-10 text-xs font-bold uppercase tracking-[0.25em] text-blue-600">B2U B2B</p>
           <p className="relative z-10 mt-1 text-xl font-bold tracking-tight text-primary">From Idea to Success</p>
         </div>
 

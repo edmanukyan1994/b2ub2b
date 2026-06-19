@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { Menu, X } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { localeNames, type Locale } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 
 const navItems = [
   { href: "/about", key: "about" },
@@ -85,7 +85,7 @@ export function Header() {
       <header className="pointer-events-none fixed inset-x-0 top-0 z-[120] px-4 pt-4 md:px-6">
         <div className="pointer-events-auto relative mx-auto max-w-7xl liquid-glass-nav flex items-center justify-between px-5 py-2.5 md:px-7">
           <Link href="/" className="flex shrink-0 cursor-pointer items-center" onClick={() => setOpen(false)}>
-            <Image src="/logo.svg" alt="B2UB2B" width={112} height={28} priority />
+            <BrandLogo width={132} priority />
           </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex">

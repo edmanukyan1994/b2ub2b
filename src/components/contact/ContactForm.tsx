@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { CheckCircle2, Loader2, Mail, MapPin, Phone, Sparkles } from "lucide-react";
+import { CheckCircle2, Loader2, Mail, MapPin, Phone } from "lucide-react";
 import { services } from "@/content/services";
 import type { Locale } from "@/i18n/routing";
 import { Button } from "@/components/ui/Button";
+import { BrandLogo } from "@/components/ui/BrandLogo";
 import { cn } from "@/lib/utils";
 
 type ContactFormProps = {
@@ -58,10 +59,7 @@ export function ContactForm({ locale, defaultService, showSidebar = true }: Cont
       <div className={cn("relative z-10 grid", showSidebar ? "lg:grid-cols-5" : "")}>
         {showSidebar && (
           <div className="border-b border-white/40 p-8 lg:col-span-2 lg:border-b-0 lg:border-r lg:p-10">
-            <div className="flex items-center gap-2">
-              <Sparkles size={18} className="text-sky-500" />
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-sky-600">B2UB2B</span>
-            </div>
+            <BrandLogo width={104} />
             <h3 className="mt-4 text-2xl font-bold tracking-tight text-primary">{tSidebar("title")}</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">{tSidebar("text")}</p>
             <div className="mt-8 space-y-4">

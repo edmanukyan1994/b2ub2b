@@ -1,14 +1,9 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import { LiquidBackground } from "@/components/ui/LiquidBackground";
-import type { InfinityVariant } from "@/lib/infinity-variants";
+import { PageInfinityScene } from "@/components/ui/PageInfinityScene";
+import type { InfinityVariant } from "@/lib/infinity-scenes";
 import { cn } from "@/lib/utils";
-
-const InfinityShape3D = dynamic(
-  () => import("@/components/ui/InfinityShape3D").then((m) => m.InfinityShape3D),
-  { ssr: false },
-);
 
 type PageSceneLayoutProps = {
   variant: InfinityVariant;
@@ -29,7 +24,7 @@ export function PageSceneLayout({
       <div aria-hidden className="pointer-events-none fixed inset-0 z-0 overflow-hidden">
         <LiquidBackground variant="hero" />
       </div>
-      <InfinityShape3D variant={variant} />
+      <PageInfinityScene variant={variant} />
       <div className={cn("page-content relative z-[2] pt-28 md:pt-32", contentClassName)}>
         {children}
       </div>

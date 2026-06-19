@@ -8,7 +8,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "about" });
-  return { title: `${t("title")} | B2UB2B` };
+  return { title: `${t("title")} | B2U B2B` };
 }
 
 export default async function AboutPage({ params }: Props) {
@@ -30,7 +30,7 @@ export default async function AboutPage({ params }: Props) {
       <section className="border-b border-white/20 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimatedSection>
-            <SectionHeader title={t("title")} label="B2UB2B" description={t("subtitle")} />
+            <SectionHeader title={t("title")} label="B2U B2B" description={t("subtitle")} />
           </AnimatedSection>
         </div>
       </section>
@@ -61,7 +61,7 @@ export default async function AboutPage({ params }: Props) {
       <section className="border-t border-white/20 py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimatedSection>
-            <SectionHeader title={t("valuesTitle")} label="B2UB2B" />
+            <SectionHeader title={t("valuesTitle")} label="B2U B2B" />
           </AnimatedSection>
           <div className="grid gap-5 md:grid-cols-2">
             {values.map((key, i) => (

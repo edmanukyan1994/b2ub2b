@@ -20,7 +20,7 @@ export default function AdminPage() {
     return (
       <div className="flex min-h-screen items-center justify-center bg-accent-light p-6">
         <form onSubmit={login} className="w-full max-w-sm rounded-2xl border border-border bg-white p-8">
-          <h1 className="text-xl font-semibold">B2UB2B Admin</h1>
+          <h1 className="text-xl font-semibold">B2U B2B Admin</h1>
           <p className="mt-2 text-sm text-muted">Content management panel</p>
           <input
             type="password"
@@ -73,7 +73,7 @@ export default function AdminPage() {
             <li>• Portfolio → <code>src/content/portfolio.ts</code></li>
             <li>• Blog, partners, map → <code>src/content/site-data.ts</code></li>
             <li>• UI translations → <code>messages/*.json</code></li>
-            <li>• Logo → replace <code>public/logo.svg</code></li>
+            <li>• Logo → replace <code>public/logo.png</code></li>
           </ul>
         </div>
 

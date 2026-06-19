@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
   const service = getService(slug);
   if (!service) return {};
-  return { title: `${service.title[locale as Locale]} | B2UB2B` };
+  return { title: `${service.title[locale as Locale]} | B2U B2B` };
 }
 
 export default async function ServicePage({ params }: Props) {

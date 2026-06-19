@@ -9,7 +9,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "B2UB2B",
+  title: "B2U B2B",
   description: "From Idea to Success",
 };
 

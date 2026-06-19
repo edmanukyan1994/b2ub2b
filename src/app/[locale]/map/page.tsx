@@ -10,7 +10,7 @@ type Props = { params: Promise<{ locale: string }> };
 export async function generateMetadata({ params }: Props) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "map" });
-  return { title: `${t("title")} | B2UB2B` };
+  return { title: `${t("title")} | B2U B2B` };
 }
 
 export default async function MapPage({ params }: Props) {

@@ -218,10 +218,10 @@ export const testimonials: Testimonial[] = [
     },
     company: "Confidential Client",
     quote: {
-      en: "B2UB2B delivered our hotel project from engineering to launch. One team, one timeline, zero compromises on quality.",
-      ru: "B2UB2B реализовали наш отель от инженерии до запуска. Одна команда, один timeline, без компромиссов по качеству.",
-      hy: "B2UB2B-ը մեր հյուրանոցի նախագիծը իրականացրեց ինժեներia-ից մինչև launch։",
-      it: "B2UB2B ha consegnato il nostro hotel dall'ingegneria al lancio. Un team, una timeline, zero compromessi.",
+      en: "B2U B2B delivered our hotel project from engineering to launch. One team, one timeline, zero compromises on quality.",
+      ru: "B2U B2B реализовали наш отель от инженерии до запуска. Одна команда, один timeline, без компромиссов по качеству.",
+      hy: "B2U B2B-ը մեր հյուրանոցի նախագիծը իրականացրեց ինժեներia-ից մինչև launch։",
+      it: "B2U B2B ha consegnato il nostro hotel dall'ingegneria al lancio. Un team, una timeline, zero compromessi.",
     },
   },
   {
@@ -252,10 +252,10 @@ export const testimonials: Testimonial[] = [
     },
     company: "Georgia",
     quote: {
-      en: "From concept and kitchen design to equipment supply and staff training — B2UB2B handled everything. We opened on time.",
-      ru: "От концепции и проектирования кухни до поставки оборудования и обучения — B2UB2B сделали всё. Открылись в срок.",
-      hy: "Concept-ից kitchen design, equipment supply և training — B2UB2B-ը ամեն ինչ արեց։",
-      it: "Dal concept alla formazione del personale — B2UB2B ha gestito tutto. Aperti in tempo.",
+      en: "From concept and kitchen design to equipment supply and staff training — B2U B2B handled everything. We opened on time.",
+      ru: "От концепции и проектирования кухни до поставки оборудования и обучения — B2U B2B сделали всё. Открылись в срок.",
+      hy: "Concept-ից kitchen design, equipment supply և training — B2U B2B-ը ամեն ինչ արեց։",
+      it: "Dal concept alla formazione del personale — B2U B2B ha gestito tutto. Aperti in tempo.",
     },
   },
 ];
@@ -278,8 +278,8 @@ export const blogPosts: BlogPost[] = [
       it: "Guida pratica per ingresso nel mercato, framework legale e infrastruttura digitale.",
     },
     content: {
-      en: "Armenia continues to attract international businesses with its favorable tax environment, growing tech ecosystem, and strategic location between Europe and Asia. In this guide, we outline the key steps for launching a business in 2026 — from choosing the right legal structure to setting up digital infrastructure and marketing channels.\n\nWhether you're entering the HoReCa market, launching a tech startup, or expanding an existing enterprise, B2UB2B provides end-to-end support from idea to success.",
-      ru: "Армения продолжает привлекать международный бизнес благоприятной налоговой средой, растущей tech-экосистемой и стратегическим расположением между Европой и Азией. В этом руководстве мы описываем ключевые шаги запуска бизнеса в 2026 году.\n\nB2UB2B обеспечивает полный цикл поддержки — от идеи до успеха.",
+      en: "Armenia continues to attract international businesses with its favorable tax environment, growing tech ecosystem, and strategic location between Europe and Asia. In this guide, we outline the key steps for launching a business in 2026 — from choosing the right legal structure to setting up digital infrastructure and marketing channels.\n\nWhether you're entering the HoReCa market, launching a tech startup, or expanding an existing enterprise, B2U B2B provides end-to-end support from idea to success.",
+      ru: "Армения продолжает привлекать международный бизнес благоприятной налоговой средой, растущей tech-экосистемой и стратегическим расположением между Европой и Азией. В этом руководстве мы описываем ключевые шаги запуска бизнеса в 2026 году.\n\nB2U B2B обеспечивает полный цикл поддержки — от идеи до успеха.",
       hy: "Հայաստանը շարունակում է attracting international businesses favorable tax environment-ով և growing tech ecosystem-ով։",
       it: "L'Armenia continua ad attrarre business internazionali con un ambiente fiscale favorevole ed ecosistema tech in crescita.",
     },
@@ -301,8 +301,8 @@ export const blogPosts: BlogPost[] = [
       it: "Cucine smart, energy management e POS integrati stanno trasformando l'hospitality.",
     },
     content: {
-      en: "The hospitality industry is undergoing a digital transformation. From AI-powered inventory management to IoT-enabled HVAC systems, automation is no longer optional — it's a competitive advantage.\n\nAt B2UB2B, we integrate engineering excellence with digital innovation to deliver HoReCa solutions that reduce costs and elevate guest experience.",
-      ru: "Hospitality переживает digital transformation. От AI inventory management до IoT HVAC — автоматизация стала конкурентным преимуществом.\n\nB2UB2B объединяет инженерное excellence с digital innovation.",
+      en: "The hospitality industry is undergoing a digital transformation. From AI-powered inventory management to IoT-enabled HVAC systems, automation is no longer optional — it's a competitive advantage.\n\nAt B2U B2B, we integrate engineering excellence with digital innovation to deliver HoReCa solutions that reduce costs and elevate guest experience.",
+      ru: "Hospitality переживает digital transformation. От AI inventory management до IoT HVAC — автоматизация стала конкурентным преимуществом.\n\nB2U B2B объединяет инженерное excellence с digital innovation.",
       hy: "Hospitality industry-ն digital transformation է անցնում։",
       it: "L'hospitality sta attraversando una trasformazione digitale.",
     },
