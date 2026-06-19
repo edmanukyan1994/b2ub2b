@@ -74,9 +74,9 @@ export function ProjectsMap({ locale }: ProjectsMapProps) {
           const icon = L.divIcon({
             className: "b2-map-marker-icon",
             html: buildMapMarkerHtml(category),
-            iconSize: [76, 54],
-            iconAnchor: [38, 52],
-            popupAnchor: [0, -48],
+            iconSize: [44, 52],
+            iconAnchor: [22, 50],
+            popupAnchor: [0, -46],
           });
           return [project.id, icon];
         }),

@@ -23,8 +23,9 @@ export function ContactForm({ locale, defaultService, showSidebar = true }: Cont
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const form = e.currentTarget;
     setStatus("loading");
-    const formData = new FormData(e.currentTarget);
+    const formData = new FormData(form);
     const payload = {
       ...Object.fromEntries(formData.entries()),
       locale,
@@ -35,9 +36,10 @@ export function ContactForm({ locale, defaultService, showSidebar = true }: Cont
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      if (!res.ok) throw new Error("Failed");
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok) throw new Error("Failed");
       setStatus("success");
-      e.currentTarget.reset();
+      form.reset();
     } catch {
       setStatus("error");
     }

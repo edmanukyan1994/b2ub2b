@@ -148,27 +148,6 @@ body[data-menu-open] footer {
     inset 0 1px 0 rgba(255, 255, 255, 0.55);
 }
 
-.b2-map-marker__body--logo {
-  width: auto;
-  min-width: 72px;
-  height: auto;
-  padding: 7px 10px 6px;
-  border-radius: 9999px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 2px solid rgba(255, 255, 255, 0.95);
-  box-shadow:
-    0 10px 24px rgba(15, 23, 42, 0.2),
-    0 0 0 3px var(--marker-glow),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
-}
-
-.b2-map-marker__body--logo img {
-  display: block;
-  width: 58px;
-  height: auto;
-  object-fit: contain;
-}
-
 .b2-map-marker__stem {
   position: absolute;
   left: 50%;
