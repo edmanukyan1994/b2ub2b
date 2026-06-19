@@ -2,6 +2,7 @@ import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { services } from "@/content/services";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
+import { PageSceneLayout } from "@/components/layout/PageSceneLayout";
 import { Link } from "@/i18n/navigation";
 import { ArrowUpRight } from "lucide-react";
 
@@ -21,8 +22,8 @@ export default async function ServicesPage({ params }: Props) {
   const loc = locale as Locale;
 
   return (
-    <div className="pt-20">
-      <section className="py-24 md:py-32">
+    <PageSceneLayout variant="glare">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <AnimatedSection>
             <SectionHeader title={t("title")} label={tNav("services")} description={t("subtitle")} />
@@ -32,9 +33,9 @@ export default async function ServicesPage({ params }: Props) {
               <AnimatedSection key={service.slug} delay={i * 0.05}>
                 <Link
                   href={`/services/${service.slug}`}
-                  className="group flex items-start justify-between rounded-2xl border border-border p-8 transition-all hover:border-foreground/20 hover:shadow-lg"
+                  className="liquid-glass-panel page-glass-card group flex items-start justify-between p-8 transition-shadow hover:shadow-lg"
                 >
-                  <div>
+                  <div className="relative z-10">
                     <h3 className="text-xl font-semibold">{service.title[loc]}</h3>
                     <p className="mt-3 text-sm leading-relaxed text-muted">
                       {service.shortDescription[loc]}
@@ -42,7 +43,7 @@ export default async function ServicesPage({ params }: Props) {
                   </div>
                   <ArrowUpRight
                     size={20}
-                    className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100"
+                    className="relative z-10 shrink-0 opacity-60 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
                   />
                 </Link>
               </AnimatedSection>
@@ -50,6 +51,6 @@ export default async function ServicesPage({ params }: Props) {
           </div>
         </div>
       </section>
-    </div>
+    </PageSceneLayout>
   );
 }

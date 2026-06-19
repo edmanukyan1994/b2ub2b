@@ -99,6 +99,140 @@ body[data-menu-open] footer {
 .leaflet-container {
   font-family: inherit;
   z-index: 0;
+  background: #dbeafe;
+  border-radius: 1.25rem;
+}
+
+/* Custom project markers (replaces broken default Leaflet pins) */
+.b2-map-marker-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+.b2-map-marker {
+  position: relative;
+  width: 44px;
+  height: 52px;
+  pointer-events: none;
+}
+
+.b2-map-marker__pulse {
+  position: absolute;
+  left: 50%;
+  top: 10px;
+  width: 34px;
+  height: 34px;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: var(--marker-glow);
+  opacity: 0.45;
+  animation: map-marker-pulse 2.4s ease-in-out infinite;
+}
+
+.b2-map-marker__body {
+  position: absolute;
+  left: 50%;
+  top: 4px;
+  z-index: 2;
+  display: flex;
+  height: 36px;
+  width: 36px;
+  transform: translateX(-50%);
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: var(--marker-gradient);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  box-shadow:
+    0 10px 24px rgba(15, 23, 42, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.55);
+}
+
+.b2-map-marker__stem {
+  position: absolute;
+  left: 50%;
+  top: 34px;
+  z-index: 1;
+  height: 12px;
+  width: 3px;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(148, 163, 184, 0.9));
+}
+
+.b2-map-marker__shadow {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  z-index: 0;
+  height: 8px;
+  width: 22px;
+  transform: translateX(-50%);
+  border-radius: 9999px;
+  background: rgba(15, 23, 42, 0.18);
+  filter: blur(2px);
+}
+
+.b2-map-marker:hover .b2-map-marker__body {
+  transform: translateX(-50%) scale(1.08);
+  transition: transform 0.2s ease;
+}
+
+@keyframes map-marker-pulse {
+  0%, 100% { transform: translateX(-50%) scale(0.92); opacity: 0.35; }
+  50% { transform: translateX(-50%) scale(1.08); opacity: 0.55; }
+}
+
+.b2-map-container .leaflet-popup-content-wrapper {
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+}
+
+.b2-map-container .leaflet-popup-tip {
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.b2-map-popup__inner {
+  min-width: 180px;
+  padding: 2px;
+}
+
+.b2-map-popup__badge {
+  display: inline-block;
+  border-radius: 9999px;
+  background: rgba(56, 189, 248, 0.12);
+  padding: 0.2rem 0.55rem;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #0369a1;
+}
+
+.b2-map-popup__title {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+}
+
+.b2-map-popup__country {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+.b2-map-popup__type {
+  margin-top: 0.35rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: #64748b;
 }
 
 /* Menu — blur всей страницы кроме chrome */
@@ -391,4 +525,53 @@ body[data-menu-open] footer {
 
 .section-liquid {
   position: relative;
+}
+
+/* Per-page ambient tint over mesh (works with 3D + glass) */
+.page-scene-tint {
+  opacity: 0.55;
+}
+
+.page-scene-vivid {
+  background:
+    radial-gradient(circle at 78% 18%, rgba(34, 211, 238, 0.45) 0%, transparent 42%),
+    radial-gradient(circle at 12% 72%, rgba(244, 114, 182, 0.35) 0%, transparent 38%);
+}
+
+.page-scene-nova {
+  background:
+    radial-gradient(circle at 80% 22%, rgba(186, 230, 253, 0.55) 0%, transparent 40%),
+    radial-gradient(circle at 18% 68%, rgba(99, 102, 241, 0.3) 0%, transparent 36%);
+}
+
+.page-scene-shimmer {
+  background:
+    radial-gradient(circle at 22% 38%, rgba(94, 234, 212, 0.4) 0%, transparent 42%),
+    radial-gradient(circle at 82% 58%, rgba(196, 181, 253, 0.38) 0%, transparent 38%);
+}
+
+.page-scene-eclipse {
+  background:
+    radial-gradient(circle at 75% 30%, rgba(251, 191, 36, 0.28) 0%, transparent 36%),
+    radial-gradient(circle at 20% 70%, rgba(49, 46, 129, 0.45) 0%, transparent 44%);
+}
+
+.page-scene-glare {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(255, 255, 255, 0.35) 0%, transparent 38%),
+    radial-gradient(circle at 15% 75%, rgba(14, 165, 233, 0.32) 0%, transparent 40%);
+}
+
+.page-scene-flare {
+  background:
+    radial-gradient(circle at 78% 28%, rgba(253, 186, 116, 0.42) 0%, transparent 40%),
+    radial-gradient(circle at 14% 62%, rgba(251, 113, 133, 0.35) 0%, transparent 38%);
+}
+
+.page-scene-fallback {
+  opacity: 0.7;
+}
+
+.page-glass-card {
+  border-radius: var(--radius-panel);
 }

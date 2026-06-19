@@ -1,6 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { PortfolioGrid } from "@/components/portfolio/PortfolioGrid";
+import { PageSceneLayout } from "@/components/layout/PageSceneLayout";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -15,12 +16,12 @@ export default async function PortfolioPage({ params }: Props) {
   setRequestLocale(locale as Locale);
 
   return (
-    <div className="pt-20">
-      <section className="py-24 md:py-32">
+    <PageSceneLayout variant="eclipse">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <PortfolioGrid locale={locale as Locale} />
         </div>
       </section>
-    </div>
+    </PageSceneLayout>
   );
 }
