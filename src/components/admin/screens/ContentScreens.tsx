@@ -13,6 +13,7 @@ import type { CmsSection, CmsStore } from "@/lib/cms/types";
 import type { MapMarkerCategory } from "@/lib/map-markers";
 import { emptyLocalized, slugify } from "@/lib/admin/utils";
 import { LocalizedField } from "@/components/admin/shared/LocalizedField";
+import { MediaUploadField } from "@/components/admin/shared/MediaUploadField";
 import { AdminButton, AdminField, AdminSection, AdminSelect } from "@/components/admin/ui";
 
 const SERVICE_ICONS = ["briefcase", "blueprint", "utensils", "code", "megaphone", "users", "globe"];
@@ -191,7 +192,18 @@ function PortfolioEditor({ item, onChange }: { item: PortfolioProject; onChange:
           onChange={(category) => onChange({ ...item, category: category as PortfolioProject["category"] })}
           options={PORTFOLIO_CATS.map((c) => ({ value: c, label: c }))}
         />
-        <AdminField label="Обложка (путь)" value={item.coverImage ?? ""} onChange={(coverImage) => onChange({ ...item, coverImage })} hint="/portfolio/covers/..." />
+        <MediaUploadField
+          label="Обложка"
+          value={item.coverImage ?? ""}
+          onChange={(coverImage) => onChange({ ...item, coverImage })}
+          folder="portfolio/covers"
+        />
+        <MediaUploadField
+          label="Логотип клиента"
+          value={item.clientLogo ?? ""}
+          onChange={(clientLogo) => onChange({ ...item, clientLogo })}
+          folder="logos/clients"
+        />
         <AdminField label="Градиент Tailwind" value={item.gradient} onChange={(gradient) => onChange({ ...item, gradient })} hint="from-sky-600 to-blue-900" />
       </AdminSection>
       <AdminSection title="Тексты">
@@ -258,7 +270,12 @@ function PartnerEditor({ item, onChange }: { item: Partner; onChange: (p: Partne
   return (
     <AdminSection>
       <AdminField label="Название" value={item.name} onChange={(name) => onChange({ ...item, name })} />
-      <AdminField label="Логотип (путь)" value={item.logo ?? ""} onChange={(logo) => onChange({ ...item, logo })} />
+      <MediaUploadField
+        label="Логотип"
+        value={item.logo ?? ""}
+        onChange={(logo) => onChange({ ...item, logo })}
+        folder="logos/partners"
+      />
       <LocalizedField label="Категория" value={item.category} onChange={(category) => onChange({ ...item, category })} />
     </AdminSection>
   );
@@ -279,7 +296,12 @@ function ClientLogoEditor({ item, onChange }: { item: ClientLogo; onChange: (c: 
   return (
     <AdminSection>
       <AdminField label="Название" value={item.name} onChange={(name) => onChange({ ...item, name })} />
-      <AdminField label="Логотип (путь)" value={item.logo} onChange={(logo) => onChange({ ...item, logo })} />
+      <MediaUploadField
+        label="Логотип"
+        value={item.logo}
+        onChange={(logo) => onChange({ ...item, logo })}
+        folder="logos/clients"
+      />
       <AdminField label="Сайт" value={item.website ?? ""} onChange={(website) => onChange({ ...item, website })} />
     </AdminSection>
   );
