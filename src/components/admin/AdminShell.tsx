@@ -36,6 +36,7 @@ const SECTION_ICONS: Partial<Record<CmsSection, React.ReactNode>> = {
 
 export function AdminShell() {
   const [authed, setAuthed] = useState<boolean | null>(null);
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
   const [view, setView] = useState<View>({ type: "dashboard" });
@@ -89,13 +90,14 @@ export function AdminShell() {
     const res = await fetch("/api/admin/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password }),
+      body: JSON.stringify({ username, password }),
     });
     if (!res.ok) {
-      setLoginError("Wrong password");
+      setLoginError("Неверный логин или пароль");
       return;
     }
     setAuthed(true);
+    setUsername("");
     setPassword("");
   }
 
@@ -156,13 +158,22 @@ export function AdminShell() {
       <div className="flex min-h-screen items-center justify-center bg-slate-100 p-6">
         <form onSubmit={login} className="w-full max-w-sm rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
           <h1 className="text-xl font-bold text-slate-900">B2U B2B Admin</h1>
-          <p className="mt-2 text-sm text-slate-500">Full content management</p>
+          <p className="mt-2 text-sm text-slate-500">Вход в панель управления контентом</p>
+          <input
+            type="text"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            placeholder="Логин"
+            autoComplete="username"
+            className="mt-6 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
+          />
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="mt-6 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
+            placeholder="Пароль"
+            autoComplete="current-password"
+            className="mt-3 w-full rounded-xl border border-slate-200 px-4 py-3 text-sm"
           />
           {loginError && <p className="mt-2 text-sm text-red-600">{loginError}</p>}
           <button type="submit" className="mt-4 w-full rounded-full bg-slate-900 py-3 text-sm font-semibold text-white">

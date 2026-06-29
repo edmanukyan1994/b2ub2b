@@ -4,8 +4,19 @@ import { createHash, randomBytes, timingSafeEqual } from "crypto";
 const COOKIE_NAME = "b2_admin_session";
 const SESSION_MAX_AGE = 60 * 60 * 24 * 7; // 7 days
 
+function getAdminUsername() {
+  return process.env.ADMIN_USERNAME ?? "admin";
+}
+
 function getAdminPassword() {
-  return process.env.ADMIN_PASSWORD ?? process.env.NEXT_PUBLIC_ADMIN_PASSWORD ?? "b2ub2b";
+  return process.env.ADMIN_PASSWORD ?? "b2ub2b";
+}
+
+function safeEqual(a: string, b: string) {
+  const left = Buffer.from(a);
+  const right = Buffer.from(b);
+  if (left.length !== right.length) return false;
+  return timingSafeEqual(left, right);
 }
 
 function signToken(token: string) {
@@ -13,12 +24,8 @@ function signToken(token: string) {
   return createHash("sha256").update(`${token}:${secret}`).digest("hex");
 }
 
-export function verifyAdminPassword(password: string) {
-  const expected = getAdminPassword();
-  const a = Buffer.from(password);
-  const b = Buffer.from(expected);
-  if (a.length !== b.length) return false;
-  return timingSafeEqual(a, b);
+export function verifyAdminCredentials(username: string, password: string) {
+  return safeEqual(username, getAdminUsername()) && safeEqual(password, getAdminPassword());
 }
 
 export async function createAdminSession() {
