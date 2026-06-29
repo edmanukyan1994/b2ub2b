@@ -81,7 +81,7 @@ export function ContactForm({ locale, defaultService, showSidebar = true, servic
               <InfoRow
                 icon={<MessageCircle size={16} />}
                 label={tInfo("whatsapp")}
-                value={`${tInfo("phoneSecondary")} · ${tInfo("whatsapp")}`}
+                value={tInfo("phoneSecondary")}
                 href="https://wa.me/37433780078"
               />
               <InfoRow
