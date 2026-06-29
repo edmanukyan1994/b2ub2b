@@ -11,7 +11,7 @@ import type {
 } from "@/lib/types";
 import type { CmsSection, CmsStore } from "@/lib/cms/types";
 import type { MapMarkerCategory } from "@/lib/map-markers";
-import { emptyLocalized, slugify } from "@/lib/admin/utils";
+import { emptyLocalized, ensureLocalized, slugify } from "@/lib/admin/utils";
 import { LocalizedField } from "@/components/admin/shared/LocalizedField";
 import { MediaUploadField } from "@/components/admin/shared/MediaUploadField";
 import { AdminButton, AdminField, AdminSection, AdminSelect } from "@/components/admin/ui";
@@ -145,21 +145,21 @@ function ServiceEditor({ item, onChange }: { item: Service; onChange: (s: Servic
         />
         <AdminField
           label="Теги (через запятую)"
-          value={item.tags.join(", ")}
+          value={(item.tags ?? []).join(", ")}
           onChange={(v) => onChange({ ...item, tags: v.split(",").map((t) => t.trim()).filter(Boolean) })}
         />
       </AdminSection>
       <AdminSection title="Тексты">
-        <LocalizedField label="Название" value={item.title} onChange={(title) => onChange({ ...item, title })} />
-        <LocalizedField label="Краткое описание" value={item.shortDescription} onChange={(shortDescription) => onChange({ ...item, shortDescription })} multiline />
-        <LocalizedField label="Полное описание" value={item.description} onChange={(description) => onChange({ ...item, description })} multiline />
+        <LocalizedField label="Название" value={ensureLocalized(item.title)} onChange={(title) => onChange({ ...item, title })} />
+        <LocalizedField label="Краткое описание" value={ensureLocalized(item.shortDescription)} onChange={(shortDescription) => onChange({ ...item, shortDescription })} multiline />
+        <LocalizedField label="Полное описание" value={ensureLocalized(item.description)} onChange={(description) => onChange({ ...item, description })} multiline />
       </AdminSection>
       <AdminSection title="Преимущества" footer="Каждый пункт — на всех языках">
-        {item.benefits.map((benefit, i) => (
+        {(item.benefits ?? []).map((benefit, i) => (
           <LocalizedField
             key={i}
             label={`Пункт ${i + 1}`}
-            value={benefit}
+            value={ensureLocalized(benefit)}
             onChange={(v) => {
               const benefits = [...item.benefits];
               benefits[i] = v;
@@ -169,7 +169,7 @@ function ServiceEditor({ item, onChange }: { item: Service; onChange: (s: Servic
           />
         ))}
         <div className="p-3">
-          <AdminButton variant="secondary" onClick={() => onChange({ ...item, benefits: [...item.benefits, emptyLocalized()] })}>
+          <AdminButton variant="secondary" onClick={() => onChange({ ...item, benefits: [...(item.benefits ?? []), emptyLocalized()] })}>
             + Добавить пункт
           </AdminButton>
         </div>
@@ -204,12 +204,12 @@ function PortfolioEditor({ item, onChange }: { item: PortfolioProject; onChange:
           onChange={(clientLogo) => onChange({ ...item, clientLogo })}
           folder="logos/clients"
         />
-        <AdminField label="Градиент Tailwind" value={item.gradient} onChange={(gradient) => onChange({ ...item, gradient })} hint="from-sky-600 to-blue-900" />
+        <AdminField label="Градиент Tailwind" value={item.gradient ?? ""} onChange={(gradient) => onChange({ ...item, gradient })} hint="from-sky-600 to-blue-900" />
       </AdminSection>
       <AdminSection title="Тексты">
-        <LocalizedField label="Название" value={item.title} onChange={(title) => onChange({ ...item, title })} />
-        <LocalizedField label="Описание" value={item.description} onChange={(description) => onChange({ ...item, description })} multiline />
-        <LocalizedField label="Город" value={item.city} onChange={(city) => onChange({ ...item, city })} />
+        <LocalizedField label="Название" value={ensureLocalized(item.title)} onChange={(title) => onChange({ ...item, title })} />
+        <LocalizedField label="Описание" value={ensureLocalized(item.description)} onChange={(description) => onChange({ ...item, description })} multiline />
+        <LocalizedField label="Город" value={ensureLocalized(item.city)} onChange={(city) => onChange({ ...item, city })} />
       </AdminSection>
     </>
   );
@@ -224,9 +224,9 @@ function BlogEditor({ item, onChange }: { item: BlogPost; onChange: (b: BlogPost
         <AdminField label="Время чтения (мин)" value={String(item.readTime)} onChange={(v) => onChange({ ...item, readTime: Number(v) || 5 })} type="number" />
       </AdminSection>
       <AdminSection title="Тексты">
-        <LocalizedField label="Заголовок" value={item.title} onChange={(title) => onChange({ ...item, title })} />
-        <LocalizedField label="Краткое описание" value={item.excerpt} onChange={(excerpt) => onChange({ ...item, excerpt })} multiline />
-        <LocalizedField label="Статья" value={item.content} onChange={(content) => onChange({ ...item, content })} multiline />
+        <LocalizedField label="Заголовок" value={ensureLocalized(item.title)} onChange={(title) => onChange({ ...item, title })} />
+        <LocalizedField label="Краткое описание" value={ensureLocalized(item.excerpt)} onChange={(excerpt) => onChange({ ...item, excerpt })} multiline />
+        <LocalizedField label="Статья" value={ensureLocalized(item.content)} onChange={(content) => onChange({ ...item, content })} multiline />
       </AdminSection>
     </>
   );
@@ -259,8 +259,8 @@ function MapEditor({
         />
       </AdminSection>
       <AdminSection title="Тексты">
-        <LocalizedField label="Название" value={item.title} onChange={(title) => onChange({ ...item, title })} />
-        <LocalizedField label="Тип проекта" value={item.type} onChange={(type) => onChange({ ...item, type })} />
+        <LocalizedField label="Название" value={ensureLocalized(item.title)} onChange={(title) => onChange({ ...item, title })} />
+        <LocalizedField label="Тип проекта" value={ensureLocalized(item.type)} onChange={(type) => onChange({ ...item, type })} />
       </AdminSection>
     </>
   );
@@ -276,7 +276,7 @@ function PartnerEditor({ item, onChange }: { item: Partner; onChange: (p: Partne
         onChange={(logo) => onChange({ ...item, logo })}
         folder="logos/partners"
       />
-      <LocalizedField label="Категория" value={item.category} onChange={(category) => onChange({ ...item, category })} />
+      <LocalizedField label="Категория" value={ensureLocalized(item.category)} onChange={(category) => onChange({ ...item, category })} />
     </AdminSection>
   );
 }
@@ -284,10 +284,10 @@ function PartnerEditor({ item, onChange }: { item: Partner; onChange: (p: Partne
 function TestimonialEditor({ item, onChange }: { item: Testimonial; onChange: (t: Testimonial) => void }) {
   return (
     <AdminSection>
-      <LocalizedField label="Имя" value={item.name} onChange={(name) => onChange({ ...item, name })} />
-      <LocalizedField label="Должность" value={item.role} onChange={(role) => onChange({ ...item, role })} />
-      <AdminField label="Компания" value={item.company} onChange={(company) => onChange({ ...item, company })} />
-      <LocalizedField label="Отзыв" value={item.quote} onChange={(quote) => onChange({ ...item, quote })} multiline />
+      <LocalizedField label="Имя" value={ensureLocalized(item.name)} onChange={(name) => onChange({ ...item, name })} />
+      <LocalizedField label="Должность" value={ensureLocalized(item.role)} onChange={(role) => onChange({ ...item, role })} />
+      <AdminField label="Компания" value={item.company ?? ""} onChange={(company) => onChange({ ...item, company })} />
+      <LocalizedField label="Отзыв" value={ensureLocalized(item.quote)} onChange={(quote) => onChange({ ...item, quote })} multiline />
     </AdminSection>
   );
 }
@@ -298,7 +298,7 @@ function ClientLogoEditor({ item, onChange }: { item: ClientLogo; onChange: (c: 
       <AdminField label="Название" value={item.name} onChange={(name) => onChange({ ...item, name })} />
       <MediaUploadField
         label="Логотип"
-        value={item.logo}
+        value={item.logo ?? ""}
         onChange={(logo) => onChange({ ...item, logo })}
         folder="logos/clients"
       />

@@ -9,11 +9,31 @@ async function ensureDir(dir: string) {
   await fs.mkdir(dir, { recursive: true });
 }
 
+export function normalizeCmsStore(partial: Partial<CmsStore> | null | undefined): CmsStore {
+  const defaults = buildDefaultStore();
+  if (!partial || typeof partial !== "object") return defaults;
+
+  return {
+    services: Array.isArray(partial.services) ? partial.services : defaults.services,
+    portfolioProjects: Array.isArray(partial.portfolioProjects) ? partial.portfolioProjects : defaults.portfolioProjects,
+    clientLogos: Array.isArray(partial.clientLogos) ? partial.clientLogos : defaults.clientLogos,
+    portfolioCategories: Array.isArray(partial.portfolioCategories) ? partial.portfolioCategories : defaults.portfolioCategories,
+    blogPosts: Array.isArray(partial.blogPosts) ? partial.blogPosts : defaults.blogPosts,
+    mapProjects: Array.isArray(partial.mapProjects) ? partial.mapProjects : defaults.mapProjects,
+    partners: Array.isArray(partial.partners) ? partial.partners : defaults.partners,
+    testimonials: Array.isArray(partial.testimonials) ? partial.testimonials : defaults.testimonials,
+    mapMarkerByProject: {
+      ...defaults.mapMarkerByProject,
+      ...(partial.mapMarkerByProject && typeof partial.mapMarkerByProject === "object" ? partial.mapMarkerByProject : {}),
+    },
+  };
+}
+
 export async function readCmsStore(): Promise<CmsStore> {
   noStore();
   try {
     const raw = await fs.readFile(CMS_STORE_PATH, "utf-8");
-    return JSON.parse(raw) as CmsStore;
+    return normalizeCmsStore(JSON.parse(raw) as Partial<CmsStore>);
   } catch {
     const store = buildDefaultStore();
     await writeCmsStore(store);

@@ -43,11 +43,16 @@ export function useAdminData(authed: boolean) {
   );
 
   const loadAllMessages = useCallback(async () => {
-    const locales: Locale[] = ["en", "ru", "hy", "it"];
+    const localeList: Locale[] = ["en", "ru", "hy", "it"];
     const entries = await Promise.all(
-      locales.map(async (locale) => {
-        const res = await fetch(`/api/admin/messages/${locale}`);
-        return [locale, await res.json()] as const;
+      localeList.map(async (locale) => {
+        try {
+          const res = await fetch(`/api/admin/messages/${locale}`);
+          if (!res.ok) throw new Error();
+          return [locale, await res.json()] as const;
+        } catch {
+          return [locale, {}] as const;
+        }
       }),
     );
     setMessages(Object.fromEntries(entries));

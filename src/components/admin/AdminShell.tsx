@@ -18,7 +18,7 @@ import {
 import type { MapMarkerCategory } from "@/lib/map-markers";
 import type { CmsSection, CmsStore } from "@/lib/cms/types";
 import { locales, localeNames, type Locale } from "@/i18n/routing";
-import { localeFlag } from "@/lib/admin/utils";
+import { localeFlag, getSectionList } from "@/lib/admin/utils";
 import { useAdminData } from "@/components/admin/hooks/useAdminData";
 import {
   AdminButton,
@@ -63,6 +63,7 @@ export function AdminShell() {
   const [msgLocale, setMsgLocale] = useState<Locale>("ru");
   const [saving, setSaving] = useState(false);
   const [dirty, setDirty] = useState(false);
+  const [messagesReady, setMessagesReady] = useState(false);
 
   const { store, messages, setMessages, loading, toast, showToast, saveSection, saveAllMessages, init } =
     useAdminData(authed === true);
@@ -74,13 +75,17 @@ export function AdminShell() {
   }, []);
 
   useEffect(() => {
-    if (authed) void init();
+    if (authed) {
+      setMessagesReady(false);
+      void init().finally(() => setMessagesReady(true));
+    }
   }, [authed, init]);
 
   const loadDraft = useCallback(
     (section: CmsSection, index: number) => {
       if (!store) return;
-      const list = store[section] as unknown[];
+      const list = getSectionList(store, section);
+      if (!list[index]) return;
       const item = structuredClone(list[index]);
       setDraft(item);
       setDirty(false);
@@ -98,7 +103,7 @@ export function AdminShell() {
 
   useEffect(() => {
     if (panel.kind !== "content" || !store) return;
-    const list = store[panel.section] as unknown[];
+    const list = getSectionList(store, panel.section);
     if (list.length === 0) {
       setDraft(null);
       return;
@@ -144,7 +149,7 @@ export function AdminShell() {
     if (!store || panel.kind !== "content" || draft === null) return;
     setSaving(true);
     try {
-      const list = [...(store[panel.section] as unknown[])];
+      const list = [...getSectionList(store, panel.section)];
       list[selectedIndex] = draft;
       await saveSection(panel.section, list as CmsStore[typeof panel.section]);
       if (panel.section === "mapProjects" && draftMarker && draft && typeof draft === "object") {
@@ -180,7 +185,7 @@ export function AdminShell() {
   async function handleDelete() {
     if (!store || panel.kind !== "content") return;
     if (!confirm("Удалить этот элемент?")) return;
-    const list = (store[panel.section] as unknown[]).filter((_, i) => i !== selectedIndex);
+    const list = getSectionList(store, panel.section).filter((_, i) => i !== selectedIndex);
     await saveSection(panel.section, list as CmsStore[typeof panel.section]);
     setSelectedIndex(Math.max(0, selectedIndex - 1));
     showToast("Удалено", "success");
@@ -188,7 +193,7 @@ export function AdminShell() {
 
   async function handleAdd() {
     if (!store || panel.kind !== "content") return;
-    const list = [...(store[panel.section] as unknown[]), createItem(panel.section)];
+    const list = [...getSectionList(store, panel.section), createItem(panel.section)];
     await saveSection(panel.section, list as CmsStore[typeof panel.section]);
     setSelectedIndex(list.length - 1);
     showToast("Добавлено — заполните поля и сохраните", "success");
@@ -286,7 +291,7 @@ export function AdminShell() {
                   <span className="flex-1">{item.label}</span>
                   {store && (
                     <span className="text-xs text-slate-400">
-                      {(store[item.key] as unknown[])?.length ?? 0}
+                      {getSectionList(store, item.key).length}
                     </span>
                   )}
                 </button>
@@ -354,6 +359,12 @@ export function AdminShell() {
             </div>
           </header>
 
+          {panel.kind === "content" && !store && (
+            <div className="flex flex-1 items-center justify-center">
+              <AdminEmpty>{loading ? "Загрузка контента…" : "Не удалось загрузить данные"}</AdminEmpty>
+            </div>
+          )}
+
           {panel.kind === "content" && store && (
             <div className="flex min-h-0 flex-1">
               {/* List */}
@@ -364,10 +375,10 @@ export function AdminShell() {
                   </AdminButton>
                 </div>
                 <div className="flex-1 overflow-y-auto">
-                  {(store[panel.section] as unknown[]).length === 0 ? (
+                  {getSectionList(store, panel.section).length === 0 ? (
                     <AdminEmpty>Нет элементов. Нажмите «Добавить».</AdminEmpty>
                   ) : (
-                    (store[panel.section] as unknown[]).map((item, index) => (
+                    getSectionList(store, panel.section).map((item, index) => (
                       <AdminListItem
                         key={index}
                         title={getItemTitle(panel.section, item)}
@@ -402,7 +413,13 @@ export function AdminShell() {
             </div>
           )}
 
-          {panel.kind === "messages" && messages.ru && (
+          {panel.kind === "messages" && !messagesReady && (
+            <div className="flex flex-1 items-center justify-center">
+              <AdminEmpty>Загрузка текстов…</AdminEmpty>
+            </div>
+          )}
+
+          {panel.kind === "messages" && messagesReady && (
             <div className="flex-1 overflow-y-auto p-6">
               <div className="mb-6">
                 <p className="mb-2 text-sm font-medium text-slate-700">Язык редактирования</p>
