@@ -3,7 +3,7 @@
 import type { Locale } from "@/i18n/routing";
 import { MESSAGE_SECTIONS } from "@/lib/admin/message-schema";
 import { getByPath, setByPath } from "@/lib/admin/utils";
-import { IosField, IosGroup } from "@/components/admin/ios/ui";
+import { AdminField, AdminSection } from "@/components/admin/ui";
 
 type MessagesEditorProps = {
   messages: Record<Locale, Record<string, unknown>>;
@@ -19,11 +19,11 @@ export function MessagesSectionEditor({ messages, sectionId, locale, onChange }:
   const current = messages[locale] ?? {};
 
   return (
-    <IosGroup title={`Редактируете: ${locale.toUpperCase()}`}>
+    <AdminSection>
       {section.fields.map((field) => {
         const value = String(getByPath(current, field.path) ?? "");
         return (
-          <IosField
+          <AdminField
             key={field.path}
             label={field.label}
             value={value}
@@ -36,7 +36,7 @@ export function MessagesSectionEditor({ messages, sectionId, locale, onChange }:
           />
         );
       })}
-    </IosGroup>
+    </AdminSection>
   );
 }
 

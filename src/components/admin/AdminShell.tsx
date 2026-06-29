@@ -1,21 +1,34 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { LogOut } from "lucide-react";
+import {
+  BookOpen,
+  Briefcase,
+  FileText,
+  Image,
+  LayoutGrid,
+  LogOut,
+  MapPin,
+  Plus,
+  Save,
+  Star,
+  Trash2,
+  Users,
+} from "lucide-react";
 import type { MapMarkerCategory } from "@/lib/map-markers";
 import type { CmsSection, CmsStore } from "@/lib/cms/types";
 import { locales, localeNames, type Locale } from "@/i18n/routing";
 import { localeFlag } from "@/lib/admin/utils";
 import { useAdminData } from "@/components/admin/hooks/useAdminData";
 import {
-  IosApp,
-  IosButton,
-  IosGroup,
-  IosNavBar,
-  IosRow,
-  IosSegmented,
-  IosToast,
-} from "@/components/admin/ios/ui";
+  AdminButton,
+  AdminCard,
+  AdminEmpty,
+  AdminLayout,
+  AdminListItem,
+  AdminTabs,
+  AdminToast,
+} from "@/components/admin/ui";
 import {
   CONTENT_MENU,
   ContentItemEditor,
@@ -24,37 +37,35 @@ import {
 } from "@/components/admin/screens/ContentScreens";
 import { MESSAGE_SECTIONS, MessagesSectionEditor } from "@/components/admin/screens/MessagesScreens";
 
-type Route =
-  | { screen: "home" }
-  | { screen: "content"; section: CmsSection }
-  | { screen: "edit"; section: CmsSection; index: number }
-  | { screen: "messages" }
-  | { screen: "messages-section"; sectionId: string };
+type Panel = { kind: "content"; section: CmsSection } | { kind: "messages"; sectionId: string };
+
+const SECTION_ICONS: Partial<Record<CmsSection, React.ReactNode>> = {
+  services: <Briefcase size={16} />,
+  portfolioProjects: <LayoutGrid size={16} />,
+  blogPosts: <BookOpen size={16} />,
+  mapProjects: <MapPin size={16} />,
+  partners: <Users size={16} />,
+  testimonials: <Star size={16} />,
+  clientLogos: <Image size={16} />,
+  mapMarkerByProject: <MapPin size={16} />,
+};
 
 export function AdminShell() {
   const [authed, setAuthed] = useState<boolean | null>(null);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState("");
-  const [route, setRoute] = useState<Route>({ screen: "home" });
+  const [panel, setPanel] = useState<Panel>({ kind: "content", section: "services" });
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [draft, setDraft] = useState<unknown>(null);
   const [draftMarker, setDraftMarker] = useState<MapMarkerCategory | null>(null);
   const [editProjectId, setEditProjectId] = useState<string | null>(null);
   const [msgLocale, setMsgLocale] = useState<Locale>("ru");
   const [saving, setSaving] = useState(false);
+  const [dirty, setDirty] = useState(false);
 
-  const {
-    store,
-    setStore,
-    messages,
-    setMessages,
-    loading,
-    toast,
-    showToast,
-    saveSection,
-    saveAllMessages,
-    init,
-  } = useAdminData(authed === true);
+  const { store, messages, setMessages, loading, toast, showToast, saveSection, saveAllMessages, init } =
+    useAdminData(authed === true);
 
   useEffect(() => {
     fetch("/api/admin/auth/check")
@@ -66,12 +77,14 @@ export function AdminShell() {
     if (authed) void init();
   }, [authed, init]);
 
-  useEffect(() => {
-    if (route.screen === "edit" && store) {
-      const list = store[route.section] as unknown[];
-      const item = structuredClone(list[route.index]);
+  const loadDraft = useCallback(
+    (section: CmsSection, index: number) => {
+      if (!store) return;
+      const list = store[section] as unknown[];
+      const item = structuredClone(list[index]);
       setDraft(item);
-      if (route.section === "mapProjects" && item && typeof item === "object") {
+      setDirty(false);
+      if (section === "mapProjects" && item && typeof item === "object") {
         const id = (item as { id: string }).id;
         setEditProjectId(id);
         setDraftMarker((store.mapMarkerByProject[id] ?? "digital") as MapMarkerCategory);
@@ -79,8 +92,31 @@ export function AdminShell() {
         setEditProjectId(null);
         setDraftMarker(null);
       }
+    },
+    [store],
+  );
+
+  useEffect(() => {
+    if (panel.kind !== "content" || !store) return;
+    const list = store[panel.section] as unknown[];
+    if (list.length === 0) {
+      setDraft(null);
+      return;
     }
-  }, [route, store]);
+    const index = Math.min(selectedIndex, list.length - 1);
+    if (index !== selectedIndex) setSelectedIndex(index);
+    loadDraft(panel.section, index);
+  }, [panel, store, selectedIndex, loadDraft]);
+
+  const handleDraftChange = useCallback((item: unknown) => {
+    setDraft(item);
+    setDirty(true);
+  }, []);
+
+  const handleMarkerChange = useCallback((m: MapMarkerCategory) => {
+    setDraftMarker(m);
+    setDirty(true);
+  }, []);
 
   async function login(e: React.FormEvent) {
     e.preventDefault();
@@ -102,34 +138,24 @@ export function AdminShell() {
   async function logout() {
     await fetch("/api/admin/auth/logout", { method: "POST" });
     setAuthed(false);
-    setRoute({ screen: "home" });
   }
 
-  const goBack = useCallback(() => {
-    setRoute((r) => {
-      if (r.screen === "edit") return { screen: "content", section: r.section };
-      if (r.screen === "messages-section") return { screen: "messages" };
-      if (r.screen === "content" || r.screen === "messages") return { screen: "home" };
-      return { screen: "home" };
-    });
-  }, []);
-
-  async function handleSaveEdit() {
-    if (!store || route.screen !== "edit" || draft === null) return;
+  async function handleSaveContent() {
+    if (!store || panel.kind !== "content" || draft === null) return;
     setSaving(true);
     try {
-      const list = [...(store[route.section] as unknown[])];
-      list[route.index] = draft;
-      await saveSection(route.section, list as CmsStore[typeof route.section]);
-      if (route.section === "mapProjects" && draftMarker && draft && typeof draft === "object") {
+      const list = [...(store[panel.section] as unknown[])];
+      list[selectedIndex] = draft;
+      await saveSection(panel.section, list as CmsStore[typeof panel.section]);
+      if (panel.section === "mapProjects" && draftMarker && draft && typeof draft === "object") {
         const newId = (draft as { id: string }).id;
         const markers = { ...store.mapMarkerByProject };
         if (editProjectId && editProjectId !== newId) delete markers[editProjectId];
         markers[newId] = draftMarker;
         await saveSection("mapMarkerByProject", markers);
       }
+      setDirty(false);
       showToast("Сохранено", "success");
-      setRoute({ screen: "content", section: route.section });
     } catch {
       showToast("Ошибка сохранения", "error");
     } finally {
@@ -142,6 +168,7 @@ export function AdminShell() {
     setSaving(true);
     try {
       await saveAllMessages(messages as Record<Locale, Record<string, unknown>>);
+      setDirty(false);
       showToast("Тексты сохранены", "success");
     } catch {
       showToast("Ошибка сохранения", "error");
@@ -151,189 +178,253 @@ export function AdminShell() {
   }
 
   async function handleDelete() {
-    if (!store || route.screen !== "edit") return;
+    if (!store || panel.kind !== "content") return;
     if (!confirm("Удалить этот элемент?")) return;
-    const list = (store[route.section] as unknown[]).filter((_, i) => i !== route.index);
-    await saveSection(route.section, list as CmsStore[typeof route.section]);
+    const list = (store[panel.section] as unknown[]).filter((_, i) => i !== selectedIndex);
+    await saveSection(panel.section, list as CmsStore[typeof panel.section]);
+    setSelectedIndex(Math.max(0, selectedIndex - 1));
     showToast("Удалено", "success");
-    setRoute({ screen: "content", section: route.section });
   }
 
-  async function handleAdd(section: CmsSection) {
-    if (!store) return;
-    const list = [...(store[section] as unknown[]), createItem(section)];
-    await saveSection(section, list as CmsStore[typeof section]);
-    setRoute({ screen: "content", section });
-    showToast("Добавлено", "success");
+  async function handleAdd() {
+    if (!store || panel.kind !== "content") return;
+    const list = [...(store[panel.section] as unknown[]), createItem(panel.section)];
+    await saveSection(panel.section, list as CmsStore[typeof panel.section]);
+    setSelectedIndex(list.length - 1);
+    showToast("Добавлено — заполните поля и сохраните", "success");
+  }
+
+  function selectContent(section: CmsSection) {
+    setPanel({ kind: "content", section });
+    setSelectedIndex(0);
+  }
+
+  function selectMessages(sectionId: string) {
+    setPanel({ kind: "messages", sectionId });
+    setDirty(false);
   }
 
   if (authed === null) {
     return (
-      <IosApp>
-        <div className="flex min-h-screen items-center justify-center text-[#8E8E93]">Загрузка…</div>
-      </IosApp>
+      <AdminLayout>
+        <div className="flex min-h-screen items-center justify-center text-slate-500">Загрузка…</div>
+      </AdminLayout>
     );
   }
 
   if (!authed) {
     return (
-      <IosApp>
-        <div className="flex min-h-[100dvh] flex-col justify-center px-6">
-          <div className="mb-8 text-center">
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-[18px] bg-[#007AFF] text-2xl font-bold text-white">
-              B2
+      <AdminLayout>
+        <div className="flex min-h-screen items-center justify-center p-6">
+          <AdminCard className="w-full max-w-md p-8">
+            <div className="mb-6 text-center">
+              <h1 className="text-2xl font-bold text-slate-900">B2U B2B</h1>
+              <p className="mt-1 text-sm text-slate-500">Панель управления сайтом</p>
             </div>
-            <h1 className="text-[28px] font-bold">B2U B2B</h1>
-            <p className="mt-1 text-[15px] text-[#8E8E93]">Управление сайтом</p>
-          </div>
-          <form onSubmit={login} className="space-y-3">
-            <input
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Логин"
-              autoComplete="username"
-              className="w-full rounded-[12px] bg-white px-4 py-3.5 text-[17px] outline-none"
-            />
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Пароль"
-              autoComplete="current-password"
-              className="w-full rounded-[12px] bg-white px-4 py-3.5 text-[17px] outline-none"
-            />
-            {loginError && <p className="text-center text-[15px] text-[#FF3B30]">{loginError}</p>}
-            <IosButton type="submit">Войти</IosButton>
-          </form>
+            <form onSubmit={login} className="space-y-4">
+              <div>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Логин</label>
+                <input
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  autoComplete="username"
+                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+                />
+              </div>
+              <div>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Пароль</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  autoComplete="current-password"
+                  className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20"
+                />
+              </div>
+              {loginError && <p className="text-center text-sm text-red-600">{loginError}</p>}
+              <AdminButton type="submit" className="w-full">
+                Войти
+              </AdminButton>
+            </form>
+          </AdminCard>
         </div>
-      </IosApp>
+      </AdminLayout>
     );
   }
 
-  const navTitle =
-    route.screen === "home"
-      ? "Управление"
-      : route.screen === "content"
-        ? CONTENT_MENU.find((c) => c.key === route.section)?.label ?? ""
-        : route.screen === "edit"
-          ? "Редактирование"
-          : route.screen === "messages"
-            ? "Тексты сайта"
-            : MESSAGE_SECTIONS.find((s) => s.id === route.sectionId)?.label ?? "";
+  const contentLabel = panel.kind === "content" ? CONTENT_MENU.find((c) => c.key === panel.section)?.label : null;
+  const messageLabel =
+    panel.kind === "messages" ? MESSAGE_SECTIONS.find((s) => s.id === panel.sectionId)?.label : null;
 
   return (
-    <IosApp>
-      {toast && <IosToast message={toast.message} type={toast.type} />}
+    <AdminLayout>
+      {toast && <AdminToast message={toast.message} type={toast.type} />}
 
-      <IosNavBar
-        title={navTitle}
-        subtitle={loading ? "Загрузка…" : "B2U B2B CMS"}
-        onBack={route.screen !== "home" ? goBack : undefined}
-        action={
-          route.screen === "edit"
-            ? handleSaveEdit
-            : route.screen === "messages-section"
-              ? handleSaveMessages
-              : undefined
-        }
-        actionLabel={saving ? "…" : "Готово"}
-        actionDisabled={saving}
-      />
+      <div className="flex min-h-screen">
+        {/* Sidebar */}
+        <aside className="flex w-60 shrink-0 flex-col border-r border-slate-200 bg-white">
+          <div className="border-b border-slate-200 px-5 py-4">
+            <h1 className="text-lg font-bold text-slate-900">B2U B2B</h1>
+            <p className="text-xs text-slate-500">Управление контентом</p>
+          </div>
 
-      <main className="overflow-y-auto px-0 pb-24 pt-2" style={{ maxHeight: "calc(100dvh - 120px)" }}>
-        {route.screen === "home" && (
-          <>
-            <IosGroup title="Контент">
+          <nav className="flex-1 overflow-y-auto p-3">
+            <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Разделы сайта</p>
+            <div className="space-y-0.5">
               {CONTENT_MENU.map((item) => (
-                <IosRow
+                <button
                   key={item.key}
-                  label={item.label}
-                  value={store ? String((store[item.key] as unknown[])?.length ?? 0) : "…"}
-                  onClick={() => setRoute({ screen: "content", section: item.key })}
-                />
+                  type="button"
+                  onClick={() => selectContent(item.key)}
+                  className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm transition ${
+                    panel.kind === "content" && panel.section === item.key
+                      ? "bg-sky-50 font-medium text-sky-700"
+                      : "text-slate-600 hover:bg-slate-50"
+                  }`}
+                >
+                  {SECTION_ICONS[item.key]}
+                  <span className="flex-1">{item.label}</span>
+                  {store && (
+                    <span className="text-xs text-slate-400">
+                      {(store[item.key] as unknown[])?.length ?? 0}
+                    </span>
+                  )}
+                </button>
               ))}
-            </IosGroup>
-            <IosGroup title="Интерфейс">
-              <IosRow
-                label="Тексты сайта"
-                value="4 языка"
-                onClick={() => setRoute({ screen: "messages" })}
-              />
-            </IosGroup>
-            <div className="mx-4 mt-2">
-              <IosButton variant="destructive" onClick={logout}>
-                <span className="flex items-center justify-center gap-2">
-                  <LogOut size={18} /> Выйти
-                </span>
-              </IosButton>
             </div>
-          </>
-        )}
 
-        {route.screen === "content" && store && (
-          <>
-            <IosGroup>
-              {(store[route.section] as unknown[]).map((item, index) => (
-                <IosRow
-                  key={index}
-                  label={getItemTitle(route.section, item)}
-                  onClick={() => setRoute({ screen: "edit", section: route.section, index })}
-                />
+            <p className="mb-2 mt-5 px-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Тексты</p>
+            <div className="space-y-0.5">
+              {MESSAGE_SECTIONS.map((section) => (
+                <button
+                  key={section.id}
+                  type="button"
+                  onClick={() => selectMessages(section.id)}
+                  className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm transition ${
+                    panel.kind === "messages" && panel.sectionId === section.id
+                      ? "bg-sky-50 font-medium text-sky-700"
+                      : "text-slate-600 hover:bg-slate-50"
+                  }`}
+                >
+                  <FileText size={16} />
+                  {section.label}
+                </button>
               ))}
-            </IosGroup>
-            <div className="mx-4 mt-4">
-              <IosButton onClick={() => handleAdd(route.section)}>+ Добавить</IosButton>
             </div>
-          </>
-        )}
+          </nav>
 
-        {route.screen === "edit" && store && draft !== null && (
-          <>
-            <ContentItemEditor
-              section={route.section}
-              item={draft}
-              store={store}
-              onChange={setDraft}
-              marker={draftMarker ?? undefined}
-              onMarkerChange={setDraftMarker}
-            />
-            <div className="mx-4 mt-6 mb-8">
-              <IosButton variant="destructive" onClick={handleDelete}>
-                Удалить
-              </IosButton>
+          <div className="border-t border-slate-200 p-3">
+            <AdminButton variant="ghost" onClick={logout} className="w-full justify-start">
+              <LogOut size={16} /> Выйти
+            </AdminButton>
+          </div>
+        </aside>
+
+        {/* Main */}
+        <div className="flex min-w-0 flex-1 flex-col">
+          <header className="flex items-center justify-between gap-4 border-b border-slate-200 bg-white px-6 py-4">
+            <div>
+              <h2 className="text-lg font-semibold text-slate-900">
+                {panel.kind === "content" ? contentLabel : messageLabel}
+              </h2>
+              <p className="text-sm text-slate-500">
+                {loading
+                  ? "Загрузка…"
+                  : panel.kind === "content"
+                    ? CONTENT_MENU.find((c) => c.key === panel.section)?.subtitle
+                    : "Редактирование текстов на 4 языках"}
+              </p>
             </div>
-          </>
-        )}
+            <div className="flex items-center gap-2">
+              {panel.kind === "content" && draft !== null && (
+                <>
+                  <AdminButton variant="danger" size="sm" onClick={handleDelete}>
+                    <Trash2 size={15} /> Удалить
+                  </AdminButton>
+                  <AdminButton size="sm" onClick={handleSaveContent} disabled={saving || !dirty}>
+                    <Save size={15} /> {saving ? "Сохранение…" : dirty ? "Сохранить" : "Сохранено"}
+                  </AdminButton>
+                </>
+              )}
+              {panel.kind === "messages" && (
+                <AdminButton size="sm" onClick={handleSaveMessages} disabled={saving}>
+                  <Save size={15} /> {saving ? "Сохранение…" : "Сохранить все языки"}
+                </AdminButton>
+              )}
+            </div>
+          </header>
 
-        {route.screen === "messages" && (
-          <IosGroup title="Разделы">
-            {MESSAGE_SECTIONS.map((section) => (
-              <IosRow
-                key={section.id}
-                label={section.label}
-                value={`${section.fields.length} полей`}
-                onClick={() => setRoute({ screen: "messages-section", sectionId: section.id })}
+          {panel.kind === "content" && store && (
+            <div className="flex min-h-0 flex-1">
+              {/* List */}
+              <div className="flex w-72 shrink-0 flex-col border-r border-slate-200 bg-white">
+                <div className="border-b border-slate-100 p-3">
+                  <AdminButton variant="secondary" size="sm" onClick={handleAdd} className="w-full">
+                    <Plus size={15} /> Добавить
+                  </AdminButton>
+                </div>
+                <div className="flex-1 overflow-y-auto">
+                  {(store[panel.section] as unknown[]).length === 0 ? (
+                    <AdminEmpty>Нет элементов. Нажмите «Добавить».</AdminEmpty>
+                  ) : (
+                    (store[panel.section] as unknown[]).map((item, index) => (
+                      <AdminListItem
+                        key={index}
+                        title={getItemTitle(panel.section, item)}
+                        subtitle={panel.section === "blogPosts" ? (item as { date?: string }).date : undefined}
+                        active={index === selectedIndex}
+                        onClick={() => {
+                          if (dirty && !confirm("Есть несохранённые изменения. Перейти без сохранения?")) return;
+                          setSelectedIndex(index);
+                          loadDraft(panel.section, index);
+                        }}
+                      />
+                    ))
+                  )}
+                </div>
+              </div>
+
+              {/* Editor */}
+              <div className="min-w-0 flex-1 overflow-y-auto p-6">
+                {draft === null ? (
+                  <AdminEmpty>Выберите элемент из списка или добавьте новый</AdminEmpty>
+                ) : (
+                  <ContentItemEditor
+                    section={panel.section}
+                    item={draft}
+                    store={store}
+                    onChange={handleDraftChange}
+                    marker={draftMarker ?? undefined}
+                    onMarkerChange={handleMarkerChange}
+                  />
+                )}
+              </div>
+            </div>
+          )}
+
+          {panel.kind === "messages" && messages.ru && (
+            <div className="flex-1 overflow-y-auto p-6">
+              <div className="mb-6">
+                <p className="mb-2 text-sm font-medium text-slate-700">Язык редактирования</p>
+                <AdminTabs
+                  options={locales.map((l) => ({ value: l, label: `${localeFlag(l)} ${localeNames[l]}` }))}
+                  value={msgLocale}
+                  onChange={setMsgLocale}
+                />
+              </div>
+              <MessagesSectionEditor
+                messages={messages as Record<Locale, Record<string, unknown>>}
+                sectionId={panel.sectionId}
+                locale={msgLocale}
+                onChange={(m) => {
+                  setMessages(m);
+                  setDirty(true);
+                }}
               />
-            ))}
-          </IosGroup>
-        )}
-
-        {route.screen === "messages-section" && messages.ru && (
-          <>
-            <IosSegmented
-              options={locales.map((l) => ({ value: l, label: `${localeFlag(l)} ${localeNames[l]}` }))}
-              value={msgLocale}
-              onChange={setMsgLocale}
-            />
-            <MessagesSectionEditor
-              messages={messages as Record<Locale, Record<string, unknown>>}
-              sectionId={route.sectionId}
-              locale={msgLocale}
-              onChange={setMessages}
-            />
-          </>
-        )}
-      </main>
-    </IosApp>
+            </div>
+          )}
+        </div>
+      </div>
+    </AdminLayout>
   );
 }

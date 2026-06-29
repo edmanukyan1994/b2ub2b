@@ -4,7 +4,7 @@ import { useState } from "react";
 import { locales, localeNames, type Locale } from "@/i18n/routing";
 import type { LocalizedString } from "@/lib/types";
 import { localeFlag } from "@/lib/admin/utils";
-import { IosSegmented } from "@/components/admin/ios/ui";
+import { AdminTabs } from "@/components/admin/ui";
 
 export function LocalizedField({
   label,
@@ -18,27 +18,31 @@ export function LocalizedField({
   multiline?: boolean;
 }) {
   const [locale, setLocale] = useState<Locale>("ru");
+  const inputClass =
+    "mt-3 w-full rounded-lg border border-slate-200 px-3 py-2 text-sm outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20";
 
   return (
-    <div className="border-b border-[#C6C6C8]/40 px-4 py-3 last:border-b-0">
-      <p className="mb-2 text-[13px] text-[#8E8E93]">{label}</p>
-      <IosSegmented
-        options={locales.map((l) => ({ value: l, label: `${localeFlag(l)} ${localeNames[l]}` }))}
-        value={locale}
-        onChange={setLocale}
-      />
+    <div className="p-4">
+      <p className="text-sm font-medium text-slate-700">{label}</p>
+      <div className="mt-2">
+        <AdminTabs
+          options={locales.map((l) => ({ value: l, label: `${localeFlag(l)} ${localeNames[l]}` }))}
+          value={locale}
+          onChange={setLocale}
+        />
+      </div>
       {multiline ? (
         <textarea
           value={value[locale]}
           onChange={(e) => onChange({ ...value, [locale]: e.target.value })}
           rows={4}
-          className="mt-2 w-full resize-none rounded-lg bg-[#F2F2F7] px-3 py-2.5 text-[17px] outline-none"
+          className={inputClass}
         />
       ) : (
         <input
           value={value[locale]}
           onChange={(e) => onChange({ ...value, [locale]: e.target.value })}
-          className="mt-2 w-full rounded-lg bg-[#F2F2F7] px-3 py-2.5 text-[17px] outline-none"
+          className={inputClass}
         />
       )}
     </div>
