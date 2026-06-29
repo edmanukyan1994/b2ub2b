@@ -160,9 +160,16 @@
     },
     "info": {
       "phone": "Telefono",
+      "phonePrimary": "+374 60 780 078",
+      "phoneSecondary": "+374 33 780 078",
+      "whatsapp": "WhatsApp",
       "email": "Email",
-      "address": "Indirizzo",
-      "addressValue": "62 Republic Ave, Yerevan, Armenia"
+      "emailValue": "b2b@svogan.com",
+      "address": "Uffici",
+      "officeArmenia": "Armenia",
+      "officeNetherlands": "Paesi Bassi",
+      "addressArmenia": "Via Nar-Dos 2, 0018 Yerevan, Armenia",
+      "addressNetherlands": "Badhoevedorp, 1171 XV, Paesi Bassi"
     },
     "sidebar": {
       "title": "Mettiamoci in contatto",

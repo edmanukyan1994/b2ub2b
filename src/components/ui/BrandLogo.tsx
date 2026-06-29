@@ -7,13 +7,13 @@ type BrandLogoProps = {
   priority?: boolean;
 };
 
-/** Official wordmark — B2U B2B (602×161 source) */
+/** Wordmark — slate + brand blue, tuned for light glass UI */
 export function BrandLogo({ className, width = 132, priority = false }: BrandLogoProps) {
-  const height = Math.round(width * (161 / 602));
+  const height = Math.round(width * (80 / 420));
 
   return (
     <Image
-      src="/logo.png"
+      src="/logo.svg"
       alt="B2U B2B"
       width={width}
       height={height}

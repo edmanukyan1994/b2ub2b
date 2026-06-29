@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { CheckCircle2, Loader2, Mail, MapPin, Phone } from "lucide-react";
+import { CheckCircle2, Loader2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
 import { services } from "@/content/services";
 import type { Locale } from "@/i18n/routing";
 import { Button } from "@/components/ui/Button";
@@ -65,9 +65,34 @@ export function ContactForm({ locale, defaultService, showSidebar = true }: Cont
             <h3 className="mt-4 text-2xl font-bold tracking-tight text-primary">{tSidebar("title")}</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">{tSidebar("text")}</p>
             <div className="mt-8 space-y-4">
-              <InfoRow icon={<Mail size={16} />} label={tInfo("email")} value="hello@b2ub2b.com" />
-              <InfoRow icon={<Phone size={16} />} label={tInfo("phone")} value="+374 77 638 778" />
-              <InfoRow icon={<MapPin size={16} />} label={tInfo("address")} value={tInfo("addressValue")} />
+              <InfoRow
+                icon={<Mail size={16} />}
+                label={tInfo("email")}
+                value={tInfo("emailValue")}
+                href={`mailto:${tInfo("emailValue")}`}
+              />
+              <InfoRow
+                icon={<Phone size={16} />}
+                label={tInfo("phone")}
+                value={tInfo("phonePrimary")}
+                href="tel:+37460780078"
+              />
+              <InfoRow
+                icon={<MessageCircle size={16} />}
+                label={tInfo("whatsapp")}
+                value={`${tInfo("phoneSecondary")} · ${tInfo("whatsapp")}`}
+                href="https://wa.me/37433780078"
+              />
+              <InfoRow
+                icon={<MapPin size={16} />}
+                label={tInfo("officeArmenia")}
+                value={tInfo("addressArmenia")}
+              />
+              <InfoRow
+                icon={<MapPin size={16} />}
+                label={tInfo("officeNetherlands")}
+                value={tInfo("addressNetherlands")}
+              />
             </div>
           </div>
         )}
@@ -101,13 +126,29 @@ export function ContactForm({ locale, defaultService, showSidebar = true }: Cont
   );
 }
 
-function InfoRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+function InfoRow({
+  icon,
+  label,
+  value,
+  href,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  value: string;
+  href?: string;
+}) {
   return (
     <div className="liquid-glass-pill flex gap-3 px-4 py-3">
       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg">{icon}</div>
-      <div>
+      <div className="min-w-0">
         <p className="text-xs font-semibold text-muted">{label}</p>
-        <p className="text-sm font-bold text-primary">{value}</p>
+        {href ? (
+          <a href={href} className="text-sm font-bold text-primary transition-colors hover:text-cta">
+            {value}
+          </a>
+        ) : (
+          <p className="text-sm font-bold leading-snug text-primary">{value}</p>
+        )}
       </div>
     </div>
   );

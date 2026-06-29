@@ -168,9 +168,16 @@
     },
     "info": {
       "phone": "Հեռախոս",
+      "phonePrimary": "+374 60 780 078",
+      "phoneSecondary": "+374 33 780 078",
+      "whatsapp": "WhatsApp",
       "email": "Email",
-      "address": "Հասցե",
-      "addressValue": "Հանրապետության 62, Երևան, Հայաստան"
+      "emailValue": "b2b@svogan.com",
+      "address": "Գրասենյակներ",
+      "officeArmenia": "Հայաստան",
+      "officeNetherlands": "Նիդերլանդներ",
+      "addressArmenia": "Նար-Դոս փող. 2, 0018 Երևան, Հայաստան",
+      "addressNetherlands": "Բադխուվեդորպ, 1171 XV, Նիդերլանդներ"
     },
     "sidebar": {
       "title": "Կապվեք մեզ հետ",
