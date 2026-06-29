@@ -2,7 +2,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { getProject } from "@/content/portfolio";
+import { getPortfolioProjects, getProject } from "@/lib/content";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateStaticParams() {
-  const { portfolioProjects } = await import("@/content/portfolio");
+  const portfolioProjects = await getPortfolioProjects();
   const locales = ["en", "ru", "hy", "it"];
   return locales.flatMap((locale) =>
     portfolioProjects.map((p) => ({ locale, slug: p.slug })),
@@ -19,7 +19,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const project = getProject(slug);
+  const project = await getProject(slug);
   if (!project) return {};
   return { title: `${project.title[locale as Locale]} | B2U B2B` };
 }
@@ -27,7 +27,7 @@ export async function generateMetadata({ params }: Props) {
 export default async function ProjectPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale as Locale);
-  const project = getProject(slug);
+  const project = await getProject(slug);
   if (!project) notFound();
 
   const t = await getTranslations("portfolio");

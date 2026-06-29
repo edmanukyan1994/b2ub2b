@@ -1,5 +1,5 @@
 import type { Locale } from "@/i18n/routing";
-import { portfolioProjects } from "@/content/portfolio";
+import type { PortfolioProject } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { Link } from "@/i18n/navigation";
@@ -7,9 +7,9 @@ import { ArrowUpRight } from "lucide-react";
 import { LiquidBackground } from "@/components/ui/LiquidBackground";
 import { PortfolioCard } from "@/components/portfolio/PortfolioCard";
 
-export function PortfolioSection({ locale }: { locale: Locale }) {
+export function PortfolioSection({ locale, projects }: { locale: Locale; projects: PortfolioProject[] }) {
   const t = useTranslations("home");
-  const [featured, ...rest] = portfolioProjects.slice(0, 4);
+  const [featured, ...rest] = projects.slice(0, 4);
 
   return (
     <section className="section-liquid relative border-t border-white/20 py-24 md:py-32">

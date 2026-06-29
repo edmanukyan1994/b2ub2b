@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { CheckCircle2, Loader2, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { services } from "@/content/services";
+import type { Service } from "@/lib/types";
 import type { Locale } from "@/i18n/routing";
 import { Button } from "@/components/ui/Button";
 import { BrandLogo } from "@/components/ui/BrandLogo";
@@ -13,9 +13,10 @@ type ContactFormProps = {
   locale: Locale;
   defaultService?: string;
   showSidebar?: boolean;
+  services: Service[];
 };
 
-export function ContactForm({ locale, defaultService, showSidebar = true }: ContactFormProps) {
+export function ContactForm({ locale, defaultService, showSidebar = true, services }: ContactFormProps) {
   const t = useTranslations("contact.form");
   const tInfo = useTranslations("contact.info");
   const tSidebar = useTranslations("contact.sidebar");

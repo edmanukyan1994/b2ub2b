@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { Briefcase, DraftingCompass, UtensilsCrossed, Code2, Megaphone, Users, Globe, ArrowUpRight } from "lucide-react";
 import type { Locale } from "@/i18n/routing";
-import { services } from "@/content/services";
+import type { Service } from "@/lib/types";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { Link } from "@/i18n/navigation";
 import { Card } from "@/components/ui/Button";
@@ -28,7 +28,7 @@ const iconColors = [
   "slate",
 ] as const;
 
-export function ServicesSection({ locale }: { locale: Locale }) {
+export function ServicesSection({ locale, services }: { locale: Locale; services: Service[] }) {
   const t = useTranslations("home");
 
   return (

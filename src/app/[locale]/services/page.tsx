@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { services } from "@/content/services";
+import { getServices } from "@/lib/content";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { PageSceneLayout } from "@/components/layout/PageSceneLayout";
 import { Link } from "@/i18n/navigation";
@@ -20,6 +20,7 @@ export default async function ServicesPage({ params }: Props) {
   const t = await getTranslations("services");
   const tNav = await getTranslations("nav");
   const loc = locale as Locale;
+  const services = await getServices();
 
   return (
     <PageSceneLayout variant="glare">

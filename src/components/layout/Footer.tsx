@@ -1,10 +1,11 @@
 import { useTranslations } from "next-intl";
 import { BrandLogo } from "@/components/ui/BrandLogo";
 import { Link } from "@/i18n/navigation";
-import { services } from "@/content/services";
+import type { Locale } from "@/i18n/routing";
+import type { Service } from "@/lib/types";
 import { Button } from "@/components/ui/Button";
 
-export function Footer() {
+export function Footer({ locale, services }: { locale: Locale; services: Service[] }) {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
 
@@ -25,7 +26,7 @@ export function Footer() {
                 {services.slice(0, 4).map((service) => (
                   <li key={service.slug}>
                     <Link href={`/services/${service.slug}`} className="cursor-pointer text-sm font-medium text-muted transition-colors hover:text-primary">
-                      {service.title.en}
+                      {service.title[locale]}
                     </Link>
                   </li>
                 ))}

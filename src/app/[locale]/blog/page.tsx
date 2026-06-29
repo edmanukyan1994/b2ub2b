@@ -1,6 +1,6 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { blogPosts } from "@/content/site-data";
+import { getBlogPosts } from "@/lib/content";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { PageSceneLayout } from "@/components/layout/PageSceneLayout";
 import { Link } from "@/i18n/navigation";
@@ -19,6 +19,7 @@ export default async function BlogPage({ params }: Props) {
   const t = await getTranslations("blog");
   const tNav = await getTranslations("nav");
   const loc = locale as Locale;
+  const blogPosts = await getBlogPosts();
 
   return (
     <PageSceneLayout variant="nova">

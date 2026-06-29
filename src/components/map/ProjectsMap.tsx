@@ -4,11 +4,12 @@ import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 import type { DivIcon } from "leaflet";
 import type { Locale } from "@/i18n/routing";
-import { mapProjects } from "@/content/site-data";
+import type { MapProject } from "@/lib/types";
 import {
   buildMapMarkerHtml,
   getMapMarkerCategory,
   getMapMarkerLabel,
+  type MapMarkerCategory,
 } from "@/lib/map-markers";
 
 const MapContainer = dynamic(
@@ -30,18 +31,22 @@ const Popup = dynamic(
 
 type ProjectsMapProps = {
   locale: Locale;
+  projects: MapProject[];
+  markerByProject: Record<string, MapMarkerCategory>;
 };
 
 function ProjectMarker({
   project,
   locale,
   icon,
+  markerByProject,
 }: {
-  project: (typeof mapProjects)[number];
+  project: MapProject;
   locale: Locale;
   icon: DivIcon;
+  markerByProject: Record<string, MapMarkerCategory>;
 }) {
-  const category = getMapMarkerCategory(project);
+  const category = getMapMarkerCategory(project, markerByProject);
 
   return (
     <Marker icon={icon} position={[project.lat, project.lng]}>
@@ -57,7 +62,7 @@ function ProjectMarker({
   );
 }
 
-export function ProjectsMap({ locale }: ProjectsMapProps) {
+export function ProjectsMap({ locale, projects, markerByProject }: ProjectsMapProps) {
   const [ready, setReady] = useState(false);
   const [icons, setIcons] = useState<Record<string, DivIcon>>({});
 
@@ -69,8 +74,8 @@ export function ProjectsMap({ locale }: ProjectsMapProps) {
       await import("leaflet/dist/leaflet.css");
 
       const nextIcons = Object.fromEntries(
-        mapProjects.map((project) => {
-          const category = getMapMarkerCategory(project);
+        projects.map((project) => {
+          const category = getMapMarkerCategory(project, markerByProject);
           const icon = L.divIcon({
             className: "b2-map-marker-icon",
             html: buildMapMarkerHtml(category),
@@ -92,7 +97,7 @@ export function ProjectsMap({ locale }: ProjectsMapProps) {
     return () => {
       active = false;
     };
-  }, []);
+  }, [projects, markerByProject]);
 
   const hasIcons = useMemo(() => Object.keys(icons).length > 0, [icons]);
 
@@ -115,12 +120,13 @@ export function ProjectsMap({ locale }: ProjectsMapProps) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      {mapProjects.map((project) => (
+      {projects.map((project) => (
         <ProjectMarker
           key={project.id}
           project={project}
           locale={locale}
           icon={icons[project.id]}
+          markerByProject={markerByProject}
         />
       ))}
     </MapContainer>

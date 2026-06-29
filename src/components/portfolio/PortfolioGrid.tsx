@@ -3,8 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
-import type { PortfolioCategory } from "@/lib/types";
-import { portfolioProjects } from "@/content/portfolio";
+import type { PortfolioCategory, PortfolioProject } from "@/lib/types";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { PortfolioCard } from "@/components/portfolio/PortfolioCard";
 import { cn } from "@/lib/utils";
@@ -20,15 +19,15 @@ const filters: { key: PortfolioCategory | "all"; labelKey: string }[] = [
   { key: "automation", labelKey: "filterAutomation" },
 ];
 
-export function PortfolioGrid({ locale }: { locale: Locale }) {
+export function PortfolioGrid({ locale, projects }: { locale: Locale; projects: PortfolioProject[] }) {
   const t = useTranslations("portfolio");
   const tNav = useTranslations("nav");
   const [active, setActive] = useState<PortfolioCategory | "all">("all");
 
   const filtered =
     active === "all"
-      ? portfolioProjects
-      : portfolioProjects.filter((p) => p.category === active);
+      ? projects
+      : projects.filter((p) => p.category === active);
 
   const featured = filtered.find((p) => p.featured) ?? filtered[0];
   const others = filtered.filter((p) => p.slug !== featured?.slug);

@@ -6,9 +6,9 @@ import { ArrowRight, Globe2, ShieldCheck, TrendingUp } from "lucide-react";
 import { Button, Badge } from "@/components/ui/Button";
 import { LiquidHeroBoard } from "@/components/ui/LiquidBackground";
 import { ClientLogoMarquee } from "@/components/ui/ClientLogoMarquee";
-import { clientLogos } from "@/content/portfolio";
+import type { ClientLogo } from "@/lib/types";
 
-export function Hero() {
+export function Hero({ clientLogos }: { clientLogos: ClientLogo[] }) {
   const t = useTranslations("hero");
   const tHome = useTranslations("home");
   const reducedMotion = useReducedMotion();

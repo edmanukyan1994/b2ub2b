@@ -2,7 +2,7 @@ import type { MapProject } from "@/lib/types";
 
 export type MapMarkerCategory = "hq" | "horeca" | "digital" | "engineering" | "commerce";
 
-const MARKER_BY_PROJECT: Record<string, MapMarkerCategory> = {
+export const MARKER_BY_PROJECT: Record<string, MapMarkerCategory> = {
   "yerevan-hq": "hq",
   "yerevan-medical": "digital",
   "yerevan-hotel": "horeca",
@@ -51,8 +51,11 @@ const MARKER_META: Record<
   },
 };
 
-export function getMapMarkerCategory(project: MapProject): MapMarkerCategory {
-  return MARKER_BY_PROJECT[project.id] ?? "digital";
+export function getMapMarkerCategory(
+  project: MapProject,
+  mapping: Record<string, MapMarkerCategory> = MARKER_BY_PROJECT,
+): MapMarkerCategory {
+  return mapping[project.id] ?? "digital";
 }
 
 export function buildMapMarkerHtml(category: MapMarkerCategory) {

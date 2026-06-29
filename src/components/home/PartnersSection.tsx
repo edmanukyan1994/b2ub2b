@@ -1,10 +1,10 @@
+import type { Partner } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { LiquidBackground } from "@/components/ui/LiquidBackground";
 import { PartnerLogoMarquee } from "@/components/ui/PartnerLogoMarquee";
-import { partners } from "@/content/site-data";
 
-export function PartnersSection() {
+export function PartnersSection({ partners }: { partners: Partner[] }) {
   const t = useTranslations("home");
 
   return (

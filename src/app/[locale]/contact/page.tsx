@@ -3,6 +3,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { PageSceneLayout } from "@/components/layout/PageSceneLayout";
+import { getServices } from "@/lib/content";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -17,6 +18,7 @@ export default async function ContactPage({ params }: Props) {
   setRequestLocale(locale as Locale);
   const t = await getTranslations("contact");
   const tNav = await getTranslations("nav");
+  const services = await getServices();
 
   return (
     <PageSceneLayout variant="shimmer">
@@ -26,7 +28,7 @@ export default async function ContactPage({ params }: Props) {
             <SectionHeader title={t("title")} label={tNav("contact")} description={t("subtitle")} align="center" className="mx-auto" />
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
-            <ContactForm locale={locale as Locale} />
+            <ContactForm locale={locale as Locale} services={services} />
           </AnimatedSection>
         </div>
       </section>

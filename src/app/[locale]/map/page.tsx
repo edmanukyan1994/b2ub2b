@@ -1,9 +1,9 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { mapProjects } from "@/content/site-data";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { ProjectsMap } from "@/components/map/ProjectsMap";
 import { PageSceneLayout } from "@/components/layout/PageSceneLayout";
+import { loadMapContent } from "@/lib/content/loaders";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -19,6 +19,7 @@ export default async function MapPage({ params }: Props) {
   const t = await getTranslations("map");
   const tNav = await getTranslations("nav");
   const loc = locale as Locale;
+  const { mapProjects, markerByProject } = await loadMapContent();
 
   const byCountry = mapProjects.reduce<Record<string, typeof mapProjects>>(
     (acc, p) => {
@@ -38,7 +39,7 @@ export default async function MapPage({ params }: Props) {
           </AnimatedSection>
           <AnimatedSection delay={0.1}>
             <div className="liquid-glass-panel overflow-hidden p-2 md:p-3">
-              <ProjectsMap locale={loc} />
+              <ProjectsMap locale={loc} projects={mapProjects} markerByProject={markerByProject} />
             </div>
           </AnimatedSection>
 

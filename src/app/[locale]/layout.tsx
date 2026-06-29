@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { getServices } from "@/lib/content";
 
 type Props = {
   children: React.ReactNode;
@@ -22,14 +23,17 @@ export default async function LocaleLayout({ children, params }: Props) {
   }
 
   setRequestLocale(locale);
-  const messages = await getMessages();
+  const [messages, services] = await Promise.all([
+    getMessages(),
+    getServices(),
+  ]);
 
   return (
     <NextIntlClientProvider messages={messages}>
       <div aria-hidden className="mesh-bg pointer-events-none fixed inset-0 -z-10" />
       <Header />
       <main className="relative flex-1">{children}</main>
-      <Footer />
+      <Footer locale={locale as Locale} services={services} />
     </NextIntlClientProvider>
   );
 }

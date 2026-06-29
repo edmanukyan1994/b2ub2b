@@ -1,14 +1,14 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { getBlogPost } from "@/content/site-data";
+import { getBlogPost, getBlogPosts } from "@/lib/content";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { Link } from "@/i18n/navigation";
 
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateStaticParams() {
-  const { blogPosts } = await import("@/content/site-data");
+  const blogPosts = await getBlogPosts();
   const locales = ["en", "ru", "hy", "it"];
   return locales.flatMap((locale) =>
     blogPosts.map((p) => ({ locale, slug: p.slug })),
@@ -18,7 +18,7 @@ export async function generateStaticParams() {
 export default async function BlogPostPage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale as Locale);
-  const post = getBlogPost(slug);
+  const post = await getBlogPost(slug);
   if (!post) notFound();
 
   const t = await getTranslations("blog");

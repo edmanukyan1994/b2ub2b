@@ -1,8 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { getService } from "@/content/services";
-import { portfolioProjects } from "@/content/portfolio";
+import { getPortfolioProjects, getService, getServices } from "@/lib/content";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Link } from "@/i18n/navigation";
@@ -11,7 +10,7 @@ import { cn } from "@/lib/utils";
 type Props = { params: Promise<{ locale: string; slug: string }> };
 
 export async function generateStaticParams() {
-  const { services } = await import("@/content/services");
+  const services = await getServices();
   const locales = ["en", "ru", "hy", "it"];
   return locales.flatMap((locale) =>
     services.map((s) => ({ locale, slug: s.slug })),
@@ -20,7 +19,7 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: Props) {
   const { locale, slug } = await params;
-  const service = getService(slug);
+  const service = await getService(slug);
   if (!service) return {};
   return { title: `${service.title[locale as Locale]} | B2U B2B` };
 }
@@ -28,13 +27,15 @@ export async function generateMetadata({ params }: Props) {
 export default async function ServicePage({ params }: Props) {
   const { locale, slug } = await params;
   setRequestLocale(locale as Locale);
-  const service = getService(slug);
+  const service = await getService(slug);
   if (!service) notFound();
 
   const t = await getTranslations("services");
   const tHome = await getTranslations("home");
   const tNav = await getTranslations("nav");
   const loc = locale as Locale;
+  const portfolioProjects = await getPortfolioProjects();
+  const services = await getServices();
   const related = portfolioProjects.slice(0, 2);
 
   return (
@@ -128,7 +129,7 @@ export default async function ServicePage({ params }: Props) {
               label={tNav("contact")}
               description={t("requestText")}
             />
-            <ContactForm locale={loc} defaultService={service.slug} showSidebar={false} />
+            <ContactForm locale={loc} defaultService={service.slug} showSidebar={false} services={services} />
           </AnimatedSection>
         </div>
       </section>

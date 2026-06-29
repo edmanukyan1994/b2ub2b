@@ -1,11 +1,11 @@
 "use client";
 
-import { clientLogos } from "@/content/portfolio";
+import type { ClientLogo } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { AnimatedSection } from "@/components/ui/AnimatedSection";
 import { ClientLogoMarquee } from "@/components/ui/ClientLogoMarquee";
 
-export function ClientsSection() {
+export function ClientsSection({ clientLogos }: { clientLogos: ClientLogo[] }) {
   const t = useTranslations("home");
 
   return (

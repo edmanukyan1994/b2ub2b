@@ -1,11 +1,11 @@
 import type { Locale } from "@/i18n/routing";
-import { testimonials } from "@/content/site-data";
+import type { Testimonial } from "@/lib/types";
 import { useTranslations } from "next-intl";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { Card } from "@/components/ui/Button";
 import { LiquidBackground } from "@/components/ui/LiquidBackground";
 
-export function TestimonialsSection({ locale }: { locale: Locale }) {
+export function TestimonialsSection({ locale, testimonials }: { locale: Locale; testimonials: Testimonial[] }) {
   const t = useTranslations("home");
 
   return (

@@ -12,6 +12,7 @@ import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { StatsSection } from "@/components/home/StatsSection";
 import { PartnersSection } from "@/components/home/PartnersSection";
 import { CtaSection } from "@/components/home/CtaSection";
+import { loadHomeContent } from "@/lib/content/loaders";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -30,21 +31,23 @@ export async function generateMetadata({ params }: Props) {
 export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
+  const content = await loadHomeContent();
+  const loc = locale as Locale;
 
   return (
     <>
       <InfinityScene />
       <div className="page-content relative z-[2]">
-        <Hero />
-        <AboutSection locale={locale as Locale} />
+        <Hero clientLogos={content.clientLogos} />
+        <AboutSection locale={loc} />
         <PillarsSection />
-        <ServicesSection locale={locale as Locale} />
-        <PortfolioSection locale={locale as Locale} />
-        <ClientsSection />
+        <ServicesSection locale={loc} services={content.services} />
+        <PortfolioSection locale={loc} projects={content.portfolioProjects} />
+        <ClientsSection clientLogos={content.clientLogos} />
         <StatsSection />
         <GeographySection />
-        <TestimonialsSection locale={locale as Locale} />
-        <PartnersSection />
+        <TestimonialsSection locale={loc} testimonials={content.testimonials} />
+        <PartnersSection partners={content.partners} />
         <CtaSection />
       </div>
     </>
