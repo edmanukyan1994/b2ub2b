@@ -9,7 +9,7 @@ type BrandLogoProps = {
   priority?: boolean;
 };
 
-/** B2U B2B white wordmark on dark badge (readable on light glass UI) */
+/** B2U B2B white wordmark (`B2U B2B.png`) */
 export function BrandLogo({ className, width = 132, priority = false }: BrandLogoProps) {
   const height = Math.round(width * LOGO_ASPECT);
 
