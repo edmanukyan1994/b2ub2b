@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 const LOGO_ASPECT = 450 / 2497;
@@ -9,8 +8,8 @@ type BrandLogoProps = {
   priority?: boolean;
 };
 
-/** B2U B2B white wordmark (`B2U B2B.png`) */
-export function BrandLogo({ className, width = 132, priority = false }: BrandLogoProps) {
+/** B2U B2B white wordmark — served directly from `B2U B2B.png` without image optimizer. */
+export function BrandLogo({ className, width = 168, priority = false }: BrandLogoProps) {
   const height = Math.round(width * LOGO_ASPECT);
 
   return (
@@ -20,13 +19,16 @@ export function BrandLogo({ className, width = 132, priority = false }: BrandLog
         className,
       )}
     >
-      <Image
-        src="/logo.png"
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src="/logo.png?v=2"
         alt="B2U B2B"
         width={width}
         height={height}
-        priority={priority}
-        className="h-auto w-auto"
+        decoding="async"
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        className="block h-auto max-h-full w-auto"
         style={{ width, height: "auto", maxHeight: height }}
       />
     </span>

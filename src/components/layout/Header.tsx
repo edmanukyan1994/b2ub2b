@@ -85,7 +85,7 @@ export function Header() {
       <header className="pointer-events-none fixed inset-x-0 top-0 z-[120] px-4 pt-4 md:px-6">
         <div className="pointer-events-auto relative mx-auto max-w-7xl liquid-glass-nav flex items-center justify-between px-5 py-2.5 md:px-7">
           <Link href="/" className="flex shrink-0 cursor-pointer items-center" onClick={() => setOpen(false)}>
-            <BrandLogo width={132} priority />
+            <BrandLogo width={168} priority />
           </Link>
 
           <nav className="hidden items-center gap-0.5 lg:flex">
