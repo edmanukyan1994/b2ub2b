@@ -1,7 +1,7 @@
 import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
-import { getPortfolioProjects, getService, getServices } from "@/lib/content";
+import { getPortfolioProjects, getService, getServices, getSiteSettings } from "@/lib/content";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Link } from "@/i18n/navigation";
@@ -36,6 +36,7 @@ export default async function ServicePage({ params }: Props) {
   const loc = locale as Locale;
   const portfolioProjects = await getPortfolioProjects();
   const services = await getServices();
+  const { logoUrl } = await getSiteSettings();
   const related = portfolioProjects.slice(0, 2);
 
   return (
@@ -129,7 +130,7 @@ export default async function ServicePage({ params }: Props) {
               label={tNav("contact")}
               description={t("requestText")}
             />
-            <ContactForm locale={loc} defaultService={service.slug} showSidebar={false} services={services} />
+            <ContactForm locale={loc} defaultService={service.slug} showSidebar={false} services={services} logoUrl={logoUrl} />
           </AnimatedSection>
         </div>
       </section>

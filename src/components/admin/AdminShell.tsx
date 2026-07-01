@@ -14,9 +14,10 @@ import {
   Star,
   Trash2,
   Users,
+  Sparkles,
 } from "lucide-react";
 import type { MapMarkerCategory } from "@/lib/map-markers";
-import type { CmsSection, CmsStore } from "@/lib/cms/types";
+import type { CmsSection, CmsStore, SiteSettings } from "@/lib/cms/types";
 import { locales, localeNames, type Locale } from "@/i18n/routing";
 import { localeFlag, getSectionList } from "@/lib/admin/utils";
 import { useAdminData } from "@/components/admin/hooks/useAdminData";
@@ -36,8 +37,12 @@ import {
   getItemTitle,
 } from "@/components/admin/screens/ContentScreens";
 import { MESSAGE_SECTIONS, MessagesSectionEditor } from "@/components/admin/screens/MessagesScreens";
+import { SettingsScreen } from "@/components/admin/screens/SettingsScreen";
 
-type Panel = { kind: "content"; section: CmsSection } | { kind: "messages"; sectionId: string };
+type Panel =
+  | { kind: "content"; section: CmsSection }
+  | { kind: "messages"; sectionId: string }
+  | { kind: "settings" };
 
 const SECTION_ICONS: Partial<Record<CmsSection, React.ReactNode>> = {
   services: <Briefcase size={16} />,
@@ -64,6 +69,7 @@ export function AdminShell() {
   const [saving, setSaving] = useState(false);
   const [dirty, setDirty] = useState(false);
   const [messagesReady, setMessagesReady] = useState(false);
+  const [settingsDraft, setSettingsDraft] = useState<SiteSettings | null>(null);
 
   const { store, messages, setMessages, loading, toast, showToast, saveSection, saveAllMessages, init } =
     useAdminData(authed === true);
@@ -112,6 +118,13 @@ export function AdminShell() {
     if (index !== selectedIndex) setSelectedIndex(index);
     loadDraft(panel.section, index);
   }, [panel, store, selectedIndex, loadDraft]);
+
+  useEffect(() => {
+    if (panel.kind === "settings" && store) {
+      setSettingsDraft(structuredClone(store.siteSettings));
+      setDirty(false);
+    }
+  }, [panel, store]);
 
   const handleDraftChange = useCallback((item: unknown) => {
     setDraft(item);
@@ -168,6 +181,20 @@ export function AdminShell() {
     }
   }
 
+  async function handleSaveSettings() {
+    if (!settingsDraft) return;
+    setSaving(true);
+    try {
+      await saveSection("siteSettings", settingsDraft);
+      setDirty(false);
+      showToast("Логотип сохранён", "success");
+    } catch {
+      showToast("Ошибка сохранения", "error");
+    } finally {
+      setSaving(false);
+    }
+  }
+
   async function handleSaveMessages() {
     if (!messages.en || !messages.ru || !messages.hy || !messages.it) return;
     setSaving(true);
@@ -206,6 +233,11 @@ export function AdminShell() {
 
   function selectMessages(sectionId: string) {
     setPanel({ kind: "messages", sectionId });
+    setDirty(false);
+  }
+
+  function selectSettings() {
+    setPanel({ kind: "settings" });
     setDirty(false);
   }
 
@@ -260,6 +292,16 @@ export function AdminShell() {
   const contentLabel = panel.kind === "content" ? CONTENT_MENU.find((c) => c.key === panel.section)?.label : null;
   const messageLabel =
     panel.kind === "messages" ? MESSAGE_SECTIONS.find((s) => s.id === panel.sectionId)?.label : null;
+  const panelTitle =
+    panel.kind === "settings" ? "Логотип и брендинг" : panel.kind === "content" ? contentLabel : messageLabel;
+  const panelSubtitle =
+    panel.kind === "settings"
+      ? "Логотип в шапке, подвале и на странице контактов"
+      : loading
+        ? "Загрузка…"
+        : panel.kind === "content"
+          ? CONTENT_MENU.find((c) => c.key === panel.section)?.subtitle
+          : "Редактирование текстов на 4 языках";
 
   return (
     <AdminLayout>
@@ -274,7 +316,26 @@ export function AdminShell() {
           </div>
 
           <nav className="flex-1 overflow-y-auto p-3">
-            <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Разделы сайта</p>
+            <p className="mb-2 px-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Сайт</p>
+            <div className="space-y-0.5">
+              <button
+                type="button"
+                onClick={() => {
+                  if (dirty && !confirm("Есть несохранённые изменения. Перейти без сохранения?")) return;
+                  selectSettings();
+                }}
+                className={`flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm transition ${
+                  panel.kind === "settings"
+                    ? "bg-sky-50 font-medium text-sky-700"
+                    : "text-slate-600 hover:bg-slate-50"
+                }`}
+              >
+                <Sparkles size={16} />
+                <span className="flex-1">Логотип</span>
+              </button>
+            </div>
+
+            <p className="mb-2 mt-5 px-2 text-xs font-semibold uppercase tracking-wide text-slate-400">Разделы сайта</p>
             <div className="space-y-0.5">
               {CONTENT_MENU.map((item) => (
                 <button
@@ -329,18 +390,15 @@ export function AdminShell() {
         <div className="flex min-w-0 flex-1 flex-col">
           <header className="flex items-center justify-between gap-4 border-b border-slate-200 bg-white px-6 py-4">
             <div>
-              <h2 className="text-lg font-semibold text-slate-900">
-                {panel.kind === "content" ? contentLabel : messageLabel}
-              </h2>
-              <p className="text-sm text-slate-500">
-                {loading
-                  ? "Загрузка…"
-                  : panel.kind === "content"
-                    ? CONTENT_MENU.find((c) => c.key === panel.section)?.subtitle
-                    : "Редактирование текстов на 4 языках"}
-              </p>
+              <h2 className="text-lg font-semibold text-slate-900">{panelTitle}</h2>
+              <p className="text-sm text-slate-500">{panelSubtitle}</p>
             </div>
             <div className="flex items-center gap-2">
+              {panel.kind === "settings" && settingsDraft && (
+                <AdminButton size="sm" onClick={handleSaveSettings} disabled={saving || !dirty}>
+                  <Save size={15} /> {saving ? "Сохранение…" : dirty ? "Сохранить" : "Сохранено"}
+                </AdminButton>
+              )}
               {panel.kind === "content" && draft !== null && (
                 <>
                   <AdminButton variant="danger" size="sm" onClick={handleDelete}>
@@ -410,6 +468,22 @@ export function AdminShell() {
                   />
                 )}
               </div>
+            </div>
+          )}
+
+          {panel.kind === "settings" && settingsDraft && (
+            <div className="flex-1 overflow-y-auto p-6">
+              <SettingsScreen
+                settings={settingsDraft}
+                onChange={(next) => {
+                  setSettingsDraft(next);
+                  setDirty(true);
+                }}
+                onResetDefault={() => {
+                  setSettingsDraft({ logoUrl: "/logo.png" });
+                  setDirty(true);
+                }}
+              />
             </div>
           )}
 

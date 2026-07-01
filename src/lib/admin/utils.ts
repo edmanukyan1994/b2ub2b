@@ -51,6 +51,7 @@ export function slugify(value: string) {
 
 export function getSectionList(store: CmsStore, section: CmsSection): unknown[] {
   const data = store[section];
+  if (section === "siteSettings") return [];
   return Array.isArray(data) ? data : [];
 }
 

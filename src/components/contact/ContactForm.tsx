@@ -14,9 +14,10 @@ type ContactFormProps = {
   defaultService?: string;
   showSidebar?: boolean;
   services: Service[];
+  logoUrl: string;
 };
 
-export function ContactForm({ locale, defaultService, showSidebar = true, services }: ContactFormProps) {
+export function ContactForm({ locale, defaultService, showSidebar = true, services, logoUrl }: ContactFormProps) {
   const t = useTranslations("contact.form");
   const tInfo = useTranslations("contact.info");
   const tSidebar = useTranslations("contact.sidebar");
@@ -62,7 +63,7 @@ export function ContactForm({ locale, defaultService, showSidebar = true, servic
       <div className={cn("relative z-10 grid", showSidebar ? "lg:grid-cols-5" : "")}>
         {showSidebar && (
           <div className="border-b border-white/40 p-8 lg:col-span-2 lg:border-b-0 lg:border-r lg:p-10">
-            <BrandLogo width={104} />
+            <BrandLogo width={104} logoUrl={logoUrl} />
             <h3 className="mt-4 text-2xl font-bold tracking-tight text-primary">{tSidebar("title")}</h3>
             <p className="mt-3 text-sm leading-relaxed text-muted">{tSidebar("text")}</p>
             <div className="mt-8 space-y-4">

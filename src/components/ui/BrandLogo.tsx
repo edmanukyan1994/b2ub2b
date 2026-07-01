@@ -1,21 +1,23 @@
 import { cn } from "@/lib/utils";
 
-const LOGO_ASPECT = 450 / 2497;
+const DEFAULT_LOGO = "/logo.png";
+const DEFAULT_ASPECT = 450 / 2497;
 
 type BrandLogoProps = {
   className?: string;
   width?: number;
   priority?: boolean;
+  logoUrl?: string;
 };
 
-/** B2U B2B white wordmark from `B2U B2B.png` — transparent background only. */
-export function BrandLogo({ className, width = 168, priority = false }: BrandLogoProps) {
-  const height = Math.round(width * LOGO_ASPECT);
+/** Site wordmark — URL from CMS siteSettings or default public/logo.png */
+export function BrandLogo({ className, width = 168, priority = false, logoUrl = DEFAULT_LOGO }: BrandLogoProps) {
+  const height = Math.round(width * DEFAULT_ASPECT);
 
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      src="/logo.png?v=3"
+      src={logoUrl}
       alt="B2U B2B"
       width={width}
       height={height}

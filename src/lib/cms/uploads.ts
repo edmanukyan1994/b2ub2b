@@ -8,6 +8,7 @@ const ALLOWED_FOLDERS = new Set([
   "portfolio/covers",
   "logos/clients",
   "logos/partners",
+  "logos/brand",
   "blog",
   "general",
 ]);

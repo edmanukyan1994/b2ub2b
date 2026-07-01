@@ -10,7 +10,12 @@ import type {
 } from "@/lib/types";
 import type { MapMarkerCategory } from "@/lib/map-markers";
 
+export type SiteSettings = {
+  logoUrl: string;
+};
+
 export type CmsStore = {
+  siteSettings: SiteSettings;
   services: Service[];
   portfolioProjects: PortfolioProject[];
   clientLogos: ClientLogo[];
@@ -25,6 +30,7 @@ export type CmsStore = {
 export type CmsSection = keyof CmsStore;
 
 export const CMS_SECTIONS: { key: CmsSection; label: string }[] = [
+  { key: "siteSettings", label: "Site settings" },
   { key: "services", label: "Services" },
   { key: "portfolioProjects", label: "Portfolio" },
   { key: "clientLogos", label: "Client logos" },

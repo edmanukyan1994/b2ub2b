@@ -6,6 +6,7 @@ import type { CmsStore } from "./types";
 
 export function buildDefaultStore(): CmsStore {
   return {
+    siteSettings: { logoUrl: "/logo.png" },
     services: structuredClone(services),
     portfolioProjects: structuredClone(portfolioProjects),
     clientLogos: structuredClone(clientLogos),

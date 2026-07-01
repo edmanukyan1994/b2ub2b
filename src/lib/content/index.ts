@@ -12,6 +12,10 @@ import type {
 } from "@/lib/types";
 import type { MapMarkerCategory } from "@/lib/map-markers";
 
+export async function getSiteSettings() {
+  return (await readCmsStore()).siteSettings;
+}
+
 export async function getServices(): Promise<Service[]> {
   return (await readCmsStore()).services;
 }

@@ -14,6 +14,14 @@ export function normalizeCmsStore(partial: Partial<CmsStore> | null | undefined)
   if (!partial || typeof partial !== "object") return defaults;
 
   return {
+    siteSettings: {
+      ...defaults.siteSettings,
+      ...(partial.siteSettings && typeof partial.siteSettings === "object" ? partial.siteSettings : {}),
+      logoUrl:
+        typeof partial.siteSettings?.logoUrl === "string" && partial.siteSettings.logoUrl
+          ? partial.siteSettings.logoUrl
+          : defaults.siteSettings.logoUrl,
+    },
     services: Array.isArray(partial.services) ? partial.services : defaults.services,
     portfolioProjects: Array.isArray(partial.portfolioProjects) ? partial.portfolioProjects : defaults.portfolioProjects,
     clientLogos: Array.isArray(partial.clientLogos) ? partial.clientLogos : defaults.clientLogos,

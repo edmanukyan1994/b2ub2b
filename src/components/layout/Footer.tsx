@@ -5,7 +5,7 @@ import type { Locale } from "@/i18n/routing";
 import type { Service } from "@/lib/types";
 import { Button } from "@/components/ui/Button";
 
-export function Footer({ locale, services }: { locale: Locale; services: Service[] }) {
+export function Footer({ locale, services, logoUrl }: { locale: Locale; services: Service[]; logoUrl: string }) {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
 
@@ -15,7 +15,7 @@ export function Footer({ locale, services }: { locale: Locale; services: Service
         <div className="liquid-glass-panel p-10 md:p-12">
           <div className="relative z-10 grid gap-12 md:grid-cols-2 lg:grid-cols-4">
             <div className="lg:col-span-2">
-              <BrandLogo width={128} />
+              <BrandLogo width={128} logoUrl={logoUrl} />
               <p className="mt-4 max-w-md text-sm leading-relaxed text-muted">{t("description")}</p>
               <p className="mt-6 text-xs font-bold uppercase tracking-[0.2em] text-sky-600">{t("tagline")}</p>
               <div className="mt-8"><Button href="/contact" size="sm">{nav("getStarted")}</Button></div>
