@@ -2,11 +2,12 @@ import { services } from "@/content/services";
 import { clientLogos, portfolioCategories, portfolioProjects } from "@/content/portfolio";
 import { blogPosts, mapProjects, partners, testimonials } from "@/content/site-data";
 import { MARKER_BY_PROJECT } from "@/lib/map-markers";
+import { DEFAULT_HERO_STATS } from "./types";
 import type { CmsStore } from "./types";
 
 export function buildDefaultStore(): CmsStore {
   return {
-    siteSettings: { logoUrl: "/logo.png" },
+    siteSettings: { logoUrl: "/logo.png", heroStats: { ...DEFAULT_HERO_STATS } },
     services: structuredClone(services),
     portfolioProjects: structuredClone(portfolioProjects),
     clientLogos: structuredClone(clientLogos),

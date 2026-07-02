@@ -10,8 +10,23 @@ import type {
 } from "@/lib/types";
 import type { MapMarkerCategory } from "@/lib/map-markers";
 
+export type HeroStats = {
+  years: string;
+  projects: string;
+  countries: string;
+  services: string;
+};
+
+export const DEFAULT_HERO_STATS: HeroStats = {
+  years: "12+",
+  projects: "150+",
+  countries: "8+",
+  services: "7",
+};
+
 export type SiteSettings = {
   logoUrl: string;
+  heroStats: HeroStats;
 };
 
 export type CmsStore = {

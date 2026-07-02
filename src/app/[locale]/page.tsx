@@ -13,6 +13,7 @@ import { StatsSection } from "@/components/home/StatsSection";
 import { PartnersSection } from "@/components/home/PartnersSection";
 import { CtaSection } from "@/components/home/CtaSection";
 import { loadHomeContent } from "@/lib/content/loaders";
+import { getSiteSettings } from "@/lib/content";
 
 type Props = {
   params: Promise<{ locale: string }>;
@@ -32,13 +33,14 @@ export default async function HomePage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
   const content = await loadHomeContent();
+  const { heroStats } = await getSiteSettings();
   const loc = locale as Locale;
 
   return (
     <>
       <InfinityScene />
       <div className="page-content relative z-[2]">
-        <Hero clientLogos={content.clientLogos} />
+        <Hero clientLogos={content.clientLogos} heroStats={heroStats} />
         <AboutSection locale={loc} />
         <PillarsSection />
         <ServicesSection locale={loc} services={content.services} />

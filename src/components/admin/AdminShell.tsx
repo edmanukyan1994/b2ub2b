@@ -187,7 +187,7 @@ export function AdminShell() {
     try {
       await saveSection("siteSettings", settingsDraft);
       setDirty(false);
-      showToast("Логотип сохранён", "success");
+      showToast("Настройки сохранены", "success");
     } catch {
       showToast("Ошибка сохранения", "error");
     } finally {
@@ -293,10 +293,10 @@ export function AdminShell() {
   const messageLabel =
     panel.kind === "messages" ? MESSAGE_SECTIONS.find((s) => s.id === panel.sectionId)?.label : null;
   const panelTitle =
-    panel.kind === "settings" ? "Логотип и брендинг" : panel.kind === "content" ? contentLabel : messageLabel;
+    panel.kind === "settings" ? "Логотип и цифры" : panel.kind === "content" ? contentLabel : messageLabel;
   const panelSubtitle =
     panel.kind === "settings"
-      ? "Логотип в шапке, подвале и на странице контактов"
+      ? "Логотип, цифры в hero-блоке и на странице «О компании»"
       : loading
         ? "Загрузка…"
         : panel.kind === "content"
@@ -331,7 +331,7 @@ export function AdminShell() {
                 }`}
               >
                 <Sparkles size={16} />
-                <span className="flex-1">Логотип</span>
+                <span className="flex-1">Логотип и цифры</span>
               </button>
             </div>
 
@@ -480,7 +480,8 @@ export function AdminShell() {
                   setDirty(true);
                 }}
                 onResetDefault={() => {
-                  setSettingsDraft({ logoUrl: "/logo.png" });
+                  if (!settingsDraft) return;
+                  setSettingsDraft({ ...settingsDraft, logoUrl: "/logo.png" });
                   setDirty(true);
                 }}
               />

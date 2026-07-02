@@ -7,17 +7,18 @@ import { Button, Badge } from "@/components/ui/Button";
 import { LiquidHeroBoard } from "@/components/ui/LiquidBackground";
 import { ClientLogoMarquee } from "@/components/ui/ClientLogoMarquee";
 import type { ClientLogo } from "@/lib/types";
+import type { HeroStats } from "@/lib/cms/types";
 
-export function Hero({ clientLogos }: { clientLogos: ClientLogo[] }) {
+export function Hero({ clientLogos, heroStats }: { clientLogos: ClientLogo[]; heroStats: HeroStats }) {
   const t = useTranslations("hero");
   const tHome = useTranslations("home");
   const reducedMotion = useReducedMotion();
 
   const stats = [
-    { value: "12+", label: t("miniStats.years") },
-    { value: "150+", label: t("miniStats.projects") },
-    { value: "8+", label: t("miniStats.countries") },
-    { value: "7", label: t("miniStats.services") },
+    { value: heroStats.years, label: t("miniStats.years") },
+    { value: heroStats.projects, label: t("miniStats.projects") },
+    { value: heroStats.countries, label: t("miniStats.countries") },
+    { value: heroStats.services, label: t("miniStats.services") },
   ];
 
   const fade = (delay: number) =>

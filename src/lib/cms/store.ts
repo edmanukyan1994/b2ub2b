@@ -3,7 +3,20 @@ import { unstable_noStore as noStore } from "next/cache";
 import type { Locale } from "@/i18n/routing";
 import { CMS_DIR, CMS_MESSAGES_DIR, CMS_STORE_PATH, cmsMessagesPath } from "./paths";
 import { buildDefaultStore } from "./seed";
-import type { CmsStore } from "./types";
+import type { CmsStore, HeroStats } from "./types";
+import { DEFAULT_HERO_STATS } from "./types";
+
+function normalizeHeroStats(partial: Partial<HeroStats> | undefined, defaults: HeroStats): HeroStats {
+  const keys = ["years", "projects", "countries", "services"] as const;
+  const result = { ...defaults };
+  for (const key of keys) {
+    const value = partial?.[key];
+    if (typeof value === "string" && value.trim()) {
+      result[key] = value.trim();
+    }
+  }
+  return result;
+}
 
 async function ensureDir(dir: string) {
   await fs.mkdir(dir, { recursive: true });
@@ -21,6 +34,7 @@ export function normalizeCmsStore(partial: Partial<CmsStore> | null | undefined)
         typeof partial.siteSettings?.logoUrl === "string" && partial.siteSettings.logoUrl
           ? partial.siteSettings.logoUrl
           : defaults.siteSettings.logoUrl,
+      heroStats: normalizeHeroStats(partial.siteSettings?.heroStats, defaults.siteSettings.heroStats),
     },
     services: Array.isArray(partial.services) ? partial.services : defaults.services,
     portfolioProjects: Array.isArray(partial.portfolioProjects) ? partial.portfolioProjects : defaults.portfolioProjects,

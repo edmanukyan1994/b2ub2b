@@ -2,6 +2,7 @@ import type { Locale } from "@/i18n/routing";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { AnimatedSection, SectionHeader } from "@/components/ui/AnimatedSection";
 import { PageSceneLayout } from "@/components/layout/PageSceneLayout";
+import { getSiteSettings } from "@/lib/content";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -15,12 +16,13 @@ export default async function AboutPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale as Locale);
   const t = await getTranslations("about");
+  const { heroStats } = await getSiteSettings();
 
   const stats = [
-    { value: "12+", label: t("stats.years") },
-    { value: "150+", label: t("stats.projects") },
-    { value: "8+", label: t("stats.countries") },
-    { value: "7", label: t("stats.services") },
+    { value: heroStats.years, label: t("stats.years") },
+    { value: heroStats.projects, label: t("stats.projects") },
+    { value: heroStats.countries, label: t("stats.countries") },
+    { value: heroStats.services, label: t("stats.services") },
   ];
 
   const values = ["expertise", "international", "fullCycle", "partnership"] as const;
